@@ -36,6 +36,7 @@ $app->get('/', function() use($app) {
 $app->post('/api/geolocate', function(Request $request) use($app) {
   $app['monolog']->addDebug('logging output.');
   
+
   $geocoder = new \OpenCage\Geocoder\Geocoder('8c3273825ce1420990383af1c274fa14');
   $long = $request->request->get('long');
   $lat = $request->request->get('lat');
@@ -49,6 +50,13 @@ $app->post('/api/geolocate', function(Request $request) use($app) {
   $result->population = 60000000;
   $result->weather = "rainy";
   $result->currency = "GBP";
+
+  // start to call API weather:
+  $curl = curl_init();
+  $url = "api.openweathermap.org/data/2.5/weather?lat=50&lon=100.0&appid=8521f4625e53b1542f06039f7280aad8";
+  curl_setopt($curl, CURLOPT_URL, $url);
+  $output = curl_exec($curl);
+  $result -> weatherapi = $output;
   return json_encode($result);
 });
 
