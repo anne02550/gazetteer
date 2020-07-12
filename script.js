@@ -2,10 +2,11 @@
 
 var url = "http://192.168.1.172:3000/geolocation";
 var success = (result) => {
-    $("#country").val(result.country);
+	$("#country").val(result.country);
+	$("#population").val(result.population.toLocaleString());
     $("#capital").val(result.capital);
     $("#weather").val(result.weather);
-    $("#currency").val(result.currency);
+	$("#currency").val(result.currency);
 };
 
 $.ajax({ url, success });
