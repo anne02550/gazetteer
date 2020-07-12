@@ -32,11 +32,7 @@ $app->get('/', function() use($app) {
   return $app['twig']->render('index.twig');
 });
 
-$app->get('/geolocate', function() use($app) {
-  $app['monolog']->addDebug('logging output.');
-  return $app['twig']->render('geocode.twig');
-});
-
+//my api:
 $app->post('/api/geolocate', function(Request $request) use($app) {
   $app['monolog']->addDebug('logging output.');
   
@@ -48,8 +44,15 @@ $app->post('/api/geolocate', function(Request $request) use($app) {
   $geo_result = $geocoder->geocode($query);
   $result = new \stdClass();
   $result->location = $geo_result['results'][0]['formatted'];
+  $result->country = "England";
+  $result->capital = "London";
+  $result->population = 60000000;
+  $result->weather = "rainy";
+  $result->currency = "GBP";
   return json_encode($result);
 });
+
+
 
 
 $app->run();

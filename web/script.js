@@ -1,6 +1,8 @@
 
+var long = 50;
+var lat = 100;
 
-var url = "http://192.168.1.172:3000/geolocation";
+var url = "api/geolocate";
 var success = (result) => {
 	$("#country").val(result.country);
 	$("#population").val(result.population.toLocaleString());
@@ -9,7 +11,13 @@ var success = (result) => {
 	$("#currency").val(result.currency);
 };
 
-$.ajax({ url, success });
+$.ajax({
+	 url, 
+	 success, 
+	 type : "POST",
+	 dataType: "json",
+	 data: {long: long, lat: lat },
+});
 
 // var mymap = L.map('map').setView([51.505, -0.09], 13);
 // L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=sk.eyJ1IjoiYW5uZTAyNTUwIiwiYSI6ImNrY2oxeW94NTE5cWUydWxwenV2dHN1cGUifQ.W3bizGsISmL3lVacVw8Wlg', {
