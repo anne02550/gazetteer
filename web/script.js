@@ -1,24 +1,4 @@
 
-var long = 50;
-var lat = 100;
-
-var url = "api/geolocate";
-var success = (result) => {
-	$("#country").val(result.country);
-	$("#population").val(result.population.toLocaleString());
-    $("#capital").val(result.capital);
-    $("#weather").val(result.weather);
-	$("#currency").val(result.currency);
-};
-
-$.ajax({
-	 url, 
-	 success, 
-	 type : "POST",
-	 dataType: "json",
-	 data: {long: long, lat: lat },
-});
-
 // var mymap = L.map('map').setView([51.505, -0.09], 13);
 // L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=sk.eyJ1IjoiYW5uZTAyNTUwIiwiYSI6ImNrY2oxeW94NTE5cWUydWxwenV2dHN1cGUifQ.W3bizGsISmL3lVacVw8Wlg', {
 //     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -30,33 +10,57 @@ $.ajax({
 // }).addTo(mymap);
 
 $(document).ready(function(){
-    var map = L.map('map').fitWorld().setView([51.505, -0.09], 13);
+	var long = 50;
+	var lat = 100;
 
-	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=sk.eyJ1IjoiYW5uZTAyNTUwIiwiYSI6ImNrY2oxeW94NTE5cWUydWxwenV2dHN1cGUifQ.W3bizGsISmL3lVacVw8Wlg', {
-		maxZoom: 18,
-		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-		id: 'mapbox/streets-v11',
-		tileSize: 512,
-		zoomOffset: -1
-	}).addTo(map);
+	var url = "api/geolocate";
 
-	function onLocationFound(e) {
-		var radius = e.accuracy / 2;
+	var success = (result) => {
+		$("#country").val(result.country);
+		$("#population").val(result.population.toLocaleString());
+		$("#capital").val(result.capital);
+		$("#weather").val(result.weather);
+		$("#currency").val(result.currency);
+		$("#flag").val(result.flag);
+	};
 
-		L.marker(e.latlng).addTo(map)
-			.bindPopup("You are within " + radius + " meters from this point").openPopup();
+	$.ajax({
+		url, 
+		success,
+		error: (err) => alert(JSON.stringify(err)),
+		type : "POST",
+		dataType: "json",
+		data: {long: long, lat: lat },
+	});
 
-		L.circle(e.latlng, radius).addTo(map);
-	}
 
-	function onLocationError(e) {
-		alert(e.message);
-	}
+//     var map = L.map('map').fitWorld().setView([51.505, -0.09], 13);
 
-	map.on('locationfound', onLocationFound);
-	map.on('locationerror', onLocationError);
+// 	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=sk.eyJ1IjoiYW5uZTAyNTUwIiwiYSI6ImNrY2oxeW94NTE5cWUydWxwenV2dHN1cGUifQ.W3bizGsISmL3lVacVw8Wlg', {
+// 		maxZoom: 18,
+// 		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+// 			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+// 			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+// 		id: 'mapbox/streets-v11',
+// 		tileSize: 512,
+// 		zoomOffset: -1
+// 	}).addTo(map);
 
-	map.locate({setView: true, maxZoom: 16});
+// 	function onLocationFound(e) {
+// 		var radius = e.accuracy / 2;
+
+// 		L.marker(e.latlng).addTo(map)
+// 			.bindPopup("You are within " + radius + " meters from this point").openPopup();
+
+// 		L.circle(e.latlng, radius).addTo(map);
+// 	}
+
+// 	function onLocationError(e) {
+// 		alert(e.message);
+// 	}
+
+// 	map.on('locationfound', onLocationFound);
+// 	map.on('locationerror', onLocationError);
+
+// 	map.locate({setView: true, maxZoom: 16});
 })

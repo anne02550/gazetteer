@@ -44,7 +44,7 @@ $app->post('/api/geolocate', function(Request $request) use($app) {
   $query = $long . ',' . $lat;
   $geo_result = $geocoder->geocode($query);
   $result = new \stdClass();
-  $result->location = $geo_result['results'][0]['formatted'];
+  // $result->location = $geo_result['results'][0]['formatted'];
   $result->country = $geo_result['results'][0]['components']['country'];
   // $result->country = "England";
   $result->capital = "London";
@@ -56,10 +56,17 @@ $app->post('/api/geolocate', function(Request $request) use($app) {
 
   // start to call API weather:
   $curl = curl_init();
-  $url = "api.openweathermap.org/data/2.5/weather?lat=50&lon=100.0&appid=8521f4625e53b1542f06039f7280aad8";
-  curl_setopt($curl, CURLOPT_URL, $url);
+  $weather_query = "api.openweathermap.org/data/2.5/weather?lat=50&lon=100.0&appid=8521f4625e53b1542f06039f7280aad8";
+  $options = [
+    CURLOPT_TIMEOUT => 5000,
+    CURLOPT_URL => $weather_query,
+    CURLOPT_RETURNTRANSFER => 1
+  ];
+  curl_setopt_array($curl, $options);
   $output = curl_exec($curl);
-  $result -> weatherapi = $output;
+  $result -> weatherapi = json_decode($output);
+  $result -> weather = json_decode($output) -> weather[0] -> description;
+
   return json_encode($result);
 });
 
