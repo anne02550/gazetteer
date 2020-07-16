@@ -50,7 +50,9 @@ $app->post('/api/geolocate', function(Request $request) use($app) {
   $result->capital = "London";
   $result->population = 60000000;
   $result->weather = "rainy";
-  $result->currency = "GBP";
+  $result->currency = $geo_result['results'][0]['annotations']['currency']['name'];
+  $result->flag = $geo_result['results'][0]['annotations']['flag'];
+ 
 
   // start to call API weather:
   $curl = curl_init();
