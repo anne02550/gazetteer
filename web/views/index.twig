@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <!-- bootstrap -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ <meta name="generator" content="Jekyll v4.0.1">
     <title>GAZETTEER</title>
    <!-- bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -14,40 +14,48 @@
     crossorigin=""/>
     <!-- my css -->
     <link rel="stylesheet" href="stylesheets/style.css"/>
+    
   </head>
 
-  <body class="container">
+  <body class="text-center">
       <header>
         <h1>GAZETTEER</h1>
+        <p>Welcome to the Gazetteer</p>
       </header>
-    <main>		
-      <form>
-        <label for="address">Please enter an address :</label>
-            <input id="address" name="address" required>
+
+    <main class="form">		
+      <div>
+        <label for="address">Find a place:</label>
+            <input id="address" name="address" class="form-control" required>
           <button type="button" class="btn-success">Search</button>
           <br/>
-      </form>
-      <section>   
+      </div>
+
+      <form>   
         <label for="country">Country:</label>
-            <input id="country" type="text" />
+            <input id="country" class="form-control" type="text" />
             <i class="ae flag"></i>
           <br/>
         <label for="population">Population:</label>
-          <input id="population" type="text" />
+          <input id="population" class="form-control" type="text" />
           <br/>
         <label for="capital">Capital:</label>
-            <input id="capital" type="text" />
+            <input id="capital" class="form-control" type="text" />
           <br/>
         <label for="weather">Weather:</label>
-            <input id="weather" type="text" />
+            <input id="weather" class="form-control" type="text" />
           <br/>
         <label for="currency">Currency:</label>
-            <input id="currency" type="text" />
+            <input id="currency" class="form-control" type="text" />
           <br/>
-        </section>    
+        </form>    
+
         <div id="map"></div>
+
     </main>
-    <footer> </footer>
+      <footer>  
+        <p class="mt-5 mb-3 text-muted">&copy; Tam 2020</p> 
+        </footer>
     <!-- jQuery  -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <!-- bootstrap -->
@@ -60,5 +68,6 @@
     crossorigin=""></script>
     <!-- my script -->
     <script src="script.js"></script>
+    
   </body>
 </html>

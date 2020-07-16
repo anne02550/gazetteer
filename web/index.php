@@ -45,7 +45,8 @@ $app->post('/api/geolocate', function(Request $request) use($app) {
   $geo_result = $geocoder->geocode($query);
   $result = new \stdClass();
   $result->location = $geo_result['results'][0]['formatted'];
-  $result->country = "England";
+  $result->country = $geo_result['results'][0]['components']['country'];
+  // $result->country = "England";
   $result->capital = "London";
   $result->population = 60000000;
   $result->weather = "rainy";
