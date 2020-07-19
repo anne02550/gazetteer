@@ -71,4 +71,9 @@ $(document).ready(function(){
 	if(navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(pos => getLocationInfo(pos.coords.longitude, pos.coords.latitude));
 	}
+	$("#search-btn").click(function(){ 
+		var long = 	$("#longitude").val();
+		var lat = $("#latitude").val();
+		getLocationInfo(long, lat);
+	})
 });
