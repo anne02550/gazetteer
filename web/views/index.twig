@@ -21,13 +21,13 @@
         <h1>GAZETTEER</h1>
       </header>
     <main>		
-      <form>
+      <div>
         <label for="address">Please enter an address :</label>
             <input id="address" name="address" required>
           <button type="button" class="btn-success">Search</button>
           <br/>
-      </form>
-      <section>   
+      </div>
+      <div>   
         <label for="country">Country:</label>
             <input id="country" type="text" />
             <i class="ae flag"></i>
@@ -44,10 +44,34 @@
         <label for="currency">Currency:</label>
             <input id="currency" type="text" />
           <br/>
+         <label for="exchange_rate">Exchange rate: $</label>
+            <input id="exchange_rate" type="text"/>
+          <br/>
         <label for="flag">Flag:</label>
             <input id="flag" type="text" />
           <br/>
-        </section>    
+     </div> 
+{# modal bootstrap #}
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  Enter address manually
+</button>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="body-input">
+        <h3 class="modal-title" id="exampleModalLongTitle">Please enter the Longitude:</h3>
+          <input type=number name=longitude id="long" required />
+          <br/>
+        <h3 class="modal-title" id="exampleModalLongTitle">Please enter the Latitude:</h3>
+          <input type=number name=latitude id="lat" required/> 
+          <br/> 
+        </div>
+          <button type="button" class="btn btn-primary">Result:</button>
+      <div id="result-div"></div>
+    </div>
+  </div>
+</div>
+
         <div id="map"></div>
     </main>
     <footer> </footer>

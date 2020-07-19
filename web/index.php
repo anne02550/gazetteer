@@ -39,10 +39,10 @@ $app->post('/api/geolocate', function(Request $request) use($app) {
 
   $long = $request->request->get('long');
   $lat = $request->request->get('lat');
-    
+ 
   // Call the open cage api
   $openCageClient = new \OpenCage\Geocoder\Geocoder('8c3273825ce1420990383af1c274fa14');
-  $openCageQuery = $long . ',' . $lat;
+  $openCageQuery = $lat . ',' . $long;
   $geo_result = $openCageClient->geocode($openCageQuery);
   $result = new \stdClass();
   $result->country = $geo_result['results'][0]['components']['country'];
