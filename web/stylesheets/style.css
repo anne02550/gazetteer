@@ -31,6 +31,19 @@
       justify-content: flex-end;
     }
     @media (max-width: 575.98px) {
+      .features .form-control,
+.features input {
+    border-radius: 0;
+}
+.features .btn {
+  background-color: #589b37;
+  border: 1px solid #589b37;
+  color: #fff;
+  margin-top: 20px;
+}
+.features .btn:hover {
+  background-color: #333;
+  border: 1px solid #333;
     .description {
       left: 50%;
       position: absolute;
