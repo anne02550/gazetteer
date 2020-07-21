@@ -1,18 +1,13 @@
 
-// var mymap = L.map('map').setView([51.505, -0.09], 13);
-// L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=sk.eyJ1IjoiYW5uZTAyNTUwIiwiYSI6ImNrY2oxeW94NTE5cWUydWxwenV2dHN1cGUifQ.W3bizGsISmL3lVacVw8Wlg', {
-//     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-//     maxZoom: 18,
-//     id: 'mapbox/streets-v11',
-//     tileSize: 512,
-//     zoomOffset: -1,
-//     accessToken: 'your.mapbox.access.token'
-// }).addTo(mymap);
-
 function getLocationInfo(long, lat) {
+	$("#loading-section").show();
+	$("#result-section").hide();
+
 	var url = "api/geolocate";
 
 	var success = (result) => {
+		$("#loading-section").hide();
+		$("#results-section").show();
 		$("#country").val(result.country);
 		$("#population").val(result.population.toLocaleString());
 		$("#capital").val(result.capital);
@@ -33,6 +28,7 @@ function getLocationInfo(long, lat) {
 	});
 
 	if (location.protocol !== 'https:') {
+		// Maps error on local dev environment so skip
 		return;
 	}
 
@@ -67,13 +63,6 @@ function getLocationInfo(long, lat) {
 	map.locate({setView: true, maxZoom: 16});
 }
 
-$(document).ready(function(){	
-	if(navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(pos => getLocationInfo(pos.coords.longitude, pos.coords.latitude));
-	}
-	$("#search-btn").click(function(){ 
-		var long = 	$("#longitude").val();
-		var lat = $("#latitude").val();
-		getLocationInfo(long, lat);
-	})
+$(document).ready(function(){
+	navigator.geolocation.getCurrentPosition(pos => getLocationInfo(pos.coords.longitude, pos.coords.latitude));
 });

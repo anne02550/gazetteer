@@ -18,46 +18,45 @@
 
   <body class="container">
       <header>
-        <h1>GAZETTEER</h1>
-      </header>
-    <main>		
-      <div>
-        <label for="longitude">Please enter longitude</label>
-            <input id="longitude" required>
+        <h1>GAZETTEER</h1>        
+        </header>	
+    <main>	
+      <div id="loading-section" style="display: none;">
+        loading....
+        </div>
+      <div id="results-section" style="display: none;">
+    
+        <div>   
+          <label for="country">Country:</label>
+              <input id="country" type="text" />
+          
             <br/>
-        <label for="latitude">Please enter latitude</label>
-            <input id="latitude" required>
+          <label for="population">Population:</label>
+            <input id="population" type="text" />
             <br/>
-        <button type="button" class="btn-success" id="search-btn">Search</button>
+          <label for="capital">Capital:</label>
+              <input id="capital" type="text" />
             <br/>
-      </div>
-      
-      <div>   
-        <label for="country">Country:</label>
-            <input id="country" type="text" />
-         
-          <br/>
-        <label for="population">Population:</label>
-          <input id="population" type="text" />
-          <br/>
-        <label for="capital">Capital:</label>
-            <input id="capital" type="text" />
-          <br/>
-        <label for="weather">Weather:</label>
-            <input id="weather" type="text" />
-          <br/>
-        <label for="currency">Currency:</label>
-            <input id="currency" type="text" />
-          <br/>
-         <label for="exchange_rate">Exchange rate: $</label>
-            <input id="exchange_rate" type="text"/>
-          <br/>
-        <label for="flag">Flag:</label>
-            <input id="flag" type="text" />
-          <br/>
-     </div>
-
+          <label for="weather">Weather:</label>
+              <input id="weather" type="text" />
+            <br/>
+          <label for="currency">Currency:</label>
+              <input id="currency" type="text" />
+            <br/>
+          <label for="exchange_rate">Exchange rate: $</label>
+              <input id="exchange_rate" type="text"/>
+            <br/>
+          <label for="flag">Flag:</label>
+              <input id="flag" type="text" />
+            <br/>
+        </div>
+        <div id="find-address">
+        <h3>Alternatively, you can find an address manualy:</h3>
+        <input id="find-address" type="text" placeholder="Please enter an address:"/>
+        <button id="find-address">Find an address</button>
+          </div>
         <div id="map"></div>
+      </div>
     </main>
     <footer> </footer>
     <!-- jQuery  -->
