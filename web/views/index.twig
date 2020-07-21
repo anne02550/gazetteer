@@ -18,7 +18,11 @@
 
   <body class="container">
       <header>
-        <h1>GAZETTEER</h1>        
+        <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color">
+          <a class="navbar-brand" href="#">GAZETTEER</a
+          </nav>
+        <h1>GAZETTEER</h1>   
+        <h3>Please wait...</h3>     
         </header>	
     <main>	
       <div id="loading-section" style="display: none;">
@@ -48,15 +52,17 @@
             <br/>
           <label for="flag">Flag:</label>
               <input id="flag" type="text" />
-            <br/>
-        </div>
-        <div id="find-address">
-        <h3>Alternatively, you can find an address manualy:</h3>
-        <input id="find-address" type="text" placeholder="Please enter an address:"/>
-        <button id="find-address">Find an address</button>
+              <br/>
+            </div>
           </div>
         <div id="map"></div>
-      </div>
+         <form class="form-inline my-1">
+        <div class="md-form form-sm my-0" id="find-address">
+          <h5>Alternatively, you can find an address manualy:</h5>
+          <input class="form-control form-control-sm mr-sm-2 mb-0" id="find-address" type="text" placeholder="Please enter an address:"/>
+          </div>
+            <button class="btn btn-outline-white btn-sm my-0" type="submit" id="find-address">Find an address</button>
+          </form>
     </main>
     <footer> </footer>
     <!-- jQuery  -->
