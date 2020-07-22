@@ -19,87 +19,56 @@
   <body class="container">
     <header class="page-header header container-fluid">
       <nav class="navbar navbar-expand-md">
-  <a class="navbar-brand" href="#">GAZETTEER</a>
-  <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="main-navigation">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Home</a>
-        </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
-        </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Contact</a>
-          </li>
-        </ul>
-      </div>
+        <a class="navbar-brand" href="#">GAZETTEER</a>
     </nav>
     </header>
     <main>	
       <div class="description">
         <h1>Welcome to the Gazetteer!</h1>
-          <p>Are you ready?</p>
-          <button class="btn btn-outline-secondary btn-lg">Click me!</button>
+       
+          <button class="btn btn-outline-secondary btn-lg">Find my location!</button>
+          <br>
+          <input id="find-address" type="address" placeholder="Please enter an address"/>
+          <button class="btn btn-outline-secondary btn-lg">Search!</button>
         </div> 
 
-      <div id="loading-section" style="display: none;">
-        loading....
-        </div>
-      <div id="results-section" style="display: none;">
+   
         <div class="container features">
           <div class="row">
-            <div class="col-lg-8 col-md-8 col-sm-12">   
-          <label class="form-group" for="country">Country:</label>
+            <div class="col-lg-4 col-md-4 col-sm-12">   
+              <label class="form-group" for="country">Country:</label>
               <input class="form-control"  id="country" type="text" />
           
-            <br/>
-          <label class="form-group" for="population">Population:</label>
-            <input class="form-control"  id="population" type="text" />
-            <br/>
-          <label class="form-group" for="capital">Capital:</label>
+              
+              <label class="form-group" for="population">Population:</label>
+              <input class="form-control"  id="population" type="text" />
+           
+              <label class="form-group" for="capital">Capital:</label>
               <input class="form-control"  id="capital" type="text" />
-            <br/>
-          <label class="form-group" for="weather">Weather:</label>
+      
+              <label class="form-group" for="weather">Weather:</label>
               <input class="form-control"  id="weather" type="text" />
-            <br/>
-          <label class="form-group" for="currency">Currency:</label>
+       
+              <label class="form-group" for="currency">Currency:</label>
               <input class="form-control"  id="currency" type="text" />
-            <br/>
-          <label class="form-group" for="exchange_rate">Exchange rate: $</label>
+
+              <label class="form-group" for="exchange_rate">Exchange rate: $</label>
               <input class="form-control"  id="exchange_rate" type="text"/>
-            <br/>
-          <label class="form-group" for="flag">Flag:</label>
+  
+              <label class="form-group" for="flag">Flag:</label>
               <input class="form-control" id="flag" type="text" />
-              <br/>
-                </div>
+                  </div>
+          <div class="col-lg-4 col-md-4 col-sm-12" id="map"></div>
+          <div class="col-lg-4 col-md-4 col-sm-12" id="whatever"></div>
+            
               </div>
             </div>
-          </div>
-        <div class="col-lg-4 col-md-4 col-sm-12" id="map"></div>
-         <form class="form-inline my-1">
-        <div class="md-form form-sm my-0" id="find-address">
-          <h5>Alternatively, you can find an address manualy:</h5>
-          <input class="form-control form-control-sm mr-sm-2 mb-0" id="find-address" type="text" placeholder="Please enter an address:"/>
-          </div>
-            <button class="btn btn-outline-white btn-sm my-0" type="submit" id="find-address">Find an address</button>
-          </form>
     </main>
+    
     <footer class="page-footer">
-      <div class="container">
-        <div class="row">
-        <div class="col-lg-8 col-md-8 col-sm-12">
-          <h6 class="text-uppercase font-weight-bold">Additional Information</h6>
-         
-        </div>
-      <div class="col-lg-4 col-md-4 col-sm-12">
-        <h6 class="text-uppercase font-weight-bold">Contact</h6>
-        </div>
-     </div>
-  <div class="footer-copyright text-center">© 2020 Copyright: Tam</div>
-</footer>
+      <div class="footer-copyright text-center">© 2020 Copyright: Tam</div>
+      </footer>
+
     <!-- jQuery  -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <!-- bootstrap -->

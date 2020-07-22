@@ -1,13 +1,8 @@
 
 function getLocationInfo(long, lat) {
-	$("#loading-section").show();
-	$("#result-section").hide();
-
 	var url = "api/geolocate";
 
 	var success = (result) => {
-		$("#loading-section").hide();
-		$("#results-section").show();
 		$("#country").val(result.country);
 		$("#population").val(result.population.toLocaleString());
 		$("#capital").val(result.capital);
