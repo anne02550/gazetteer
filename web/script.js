@@ -59,5 +59,9 @@ function getLocationInfo(long, lat) {
 }
 
 $(document).ready(function(){
-	navigator.geolocation.getCurrentPosition(pos => getLocationInfo(pos.coords.longitude, pos.coords.latitude));
+	$("#location").click(function() { 
+		navigator.geolocation.getCurrentPosition(pos => getLocationInfo(pos.coords.longitude, pos.coords.latitude));
+	})
+	$("#address")
+	// navigator.geolocation.getCurrentPosition(pos => getLocationInfo(pos.coords.longitude, pos.coords.latitude));
 });
