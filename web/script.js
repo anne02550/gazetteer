@@ -1,33 +1,22 @@
 
-function getLocationInfo(long, lat) {
-	var url = "api/geolocate";
+var url = "api/geolocate";
 
-	var success = (result) => {
-		$("#country").val(result.country);
-		$("#population").val(result.population.toLocaleString());
-		$("#capital").val(result.capital);
-		$("#weather").val(result.weather);
-		$("#currency").val(result.currency);
-		$("#flag").val(result.flag);
-		var exchangeRateConvert = (1/result.exchange_rate).toPrecision(3);
-		$("#exchange_rate").val(exchangeRateConvert);
-	};
-
-	$.ajax({
-		url, 
-		success,
-		error: (err) => alert(JSON.stringify(err)),
-		type : "POST",
-		dataType: "json",
-		data: {long: long, lat: lat },
-	});
+var onApiSuccess = (result) => {
+	$("#country").val(result.country);
+	$("#population").val(result.population.toLocaleString());
+	$("#capital").val(result.capital);
+	$("#weather").val(result.weather);
+	$("#currency").val(result.currency);
+	$("#flag").val(result.flag);
+	var exchangeRateConvert = (1/result.exchange_rate).toPrecision(3);
+	$("#exchange_rate").val(exchangeRateConvert);
 
 	if (location.protocol !== 'https:') {
 		// Maps error on local dev environment so skip
 		return;
 	}
 
-	var map = L.map('map').fitWorld().setView([long, lat], 13);
+	var map = L.map('map').fitWorld().setView([result.long, result.lat], 13);
 
 	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=sk.eyJ1IjoiYW5uZTAyNTUwIiwiYSI6ImNrY2oxeW94NTE5cWUydWxwenV2dHN1cGUifQ.W3bizGsISmL3lVacVw8Wlg', {
 		maxZoom: 18,
@@ -56,12 +45,32 @@ function getLocationInfo(long, lat) {
 	map.on('locationerror', onLocationError);
 
 	map.locate({setView: true, maxZoom: 16});
+};
+
+function getLocationInfo(data) {
+	$.ajax({
+		url, 
+		success: onApiSuccess,
+		error: (err) => alert(JSON.stringify(err)),
+		type : "POST",
+		dataType: "json",
+		data: data,
+	});
 }
 
-$(document).ready(function(){
-	$("#location").click(function() { 
-		navigator.geolocation.getCurrentPosition(pos => getLocationInfo(pos.coords.longitude, pos.coords.latitude));
-	})
-	$("#address")
-	// navigator.geolocation.getCurrentPosition(pos => getLocationInfo(pos.coords.longitude, pos.coords.latitude));
+//Find location button logic:
+$(document).ready(
+	function(){
+		$("#location").click(function() { 
+			navigator.geolocation.getCurrentPosition(function(pos) {
+				var long = pos.coords.longitude;
+				var lat = pos.coords.latitude;
+				getLocationInfo({long: long, lat: lat})
+			});
+		})
+
+		$("#address").click(function(){
+			var address = $("#find-address").val();
+			getLocationInfo({ address: address})
+		})
 });

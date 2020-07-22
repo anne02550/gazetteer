@@ -39,10 +39,15 @@ $app->post('/api/geolocate', function(Request $request) use($app) {
 
   $long = $request->request->get('long');
   $lat = $request->request->get('lat');
- 
+  $address = $request->request->get('address');
+
   // Call the open cage api
   $openCageClient = new \OpenCage\Geocoder\Geocoder('8c3273825ce1420990383af1c274fa14');
   $openCageQuery = $lat . ',' . $long;
+  if ($long === null || $lat === null) {
+    $openCageQuery = $address;
+  }
+
   $geo_result = $openCageClient->geocode($openCageQuery);
   $result = new \stdClass();
   $result->country = $geo_result['results'][0]['components']['country'];
@@ -54,7 +59,16 @@ $app->post('/api/geolocate', function(Request $request) use($app) {
   
   $country_code = $geo_result['results'][0]['components']['country_code'];
   $result->country_code = $country_code;
-  
+
+  if($long === null || $lat === null)
+  {
+    $long = $geo_result['results'][0]['geometry']['lng'];
+    $lat = $geo_result['results'][0]['geometry']['lat'];
+  }
+
+  $result->long = $long;
+  $result->lat = $lat;
+
   // start to call API weather:
   $curl = curl_init();
   $weather_query = "api.openweathermap.org/data/2.5/weather?lat=" . $lat . "&lon=" . $long . "&appid=8521f4625e53b1542f06039f7280aad8";
