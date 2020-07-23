@@ -21,51 +21,7 @@
       cursor: pointer;
     }
 
-    @media (max-width: 575.98px) {
-      .features .form-control,
-      .features input {
-         border-radius: 0;
-    }
-    .features .btn {
-      background-color: #589b37;
-      border: 1px solid #589b37;
-      color: #fff;
-      margin-top: 20px;
-    }
-    .features .btn:hover {
-      background-color: #333;
-      border: 1px solid #333;
-    }
-    .description {
-      left: 50%;
-      position: absolute;
-      top: 45%;
-      transform: translate(-50%, -55%);
-      text-align: center;
-    }
-    .description button {
-      border:1px solid #6ab446;
-      background:#6ab446;
-      border-radius: 0;
-      color:#fff;
-    }
-    .description button:hover {
-      border:1px solid #fff;
-      background:#fff;
-      color:#000;
-    }
-    .page-footer {
-      background-color: #222;
-      color: rgb(236, 156, 156);
-      padding: 60px 0 30px;
-    }
-    .footer-copyright {
-      color: #666;
-      padding: 40px 0;
-    }
-  }
-  
-/* @media (min-width: 576px) { 
+@media (min-width: 576px) { 
   .container {
     max-width: 540px;
   }
@@ -112,5 +68,3 @@
     max-width: 1140px;
   }
 }
-
-*/
