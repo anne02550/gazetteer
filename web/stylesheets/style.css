@@ -9,27 +9,15 @@
         height: 100%;
         width: 100vw;
     }
-    #map {
-			width: 600px;
-      height: 400px;
-    }
+
     .navbar {
       background:#6ab446;
     }
-    .nav-link,
     .navbar-brand {
       color: #fff;
       cursor: pointer;
     }
-    .nav-link {
-      margin-right: 1em !important;
-    }
-    .nav-link:hover {
-      color: #000;
-    }
-    .navbar-collapse {
-      justify-content: flex-end;
-    }
+
     @media (max-width: 575.98px) {
       .features .form-control,
       .features input {
@@ -73,8 +61,7 @@
       padding: 40px 0;
     }
   }
-    /* #map { height: 100%; width: 100vw; } */
-
+  
 /* @media (min-width: 576px) { 
   .container {
     max-width: 540px;

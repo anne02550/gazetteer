@@ -2,6 +2,11 @@
 var url = "api/geolocate";
 
 var onApiSuccess = (result) => {
+	if(result.error) {
+		alert(result.error);
+		return;
+	}
+
 	$("#country").val(result.country);
 	$("#population").val(result.population.toLocaleString());
 	$("#capital").val(result.capital);

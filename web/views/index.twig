@@ -16,53 +16,85 @@
     <link rel="stylesheet" href="stylesheets/style.css"/>
   </head>
 
-  <body class="container">
-    <header class="page-header header container-fluid">
-      <nav class="navbar navbar-expand-md">
-        <a class="navbar-brand" href="#">GAZETTEER</a>
-      </nav>
+  <body>
+    <div class="container">
+      <header class="page-header header container-fluid">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container-fluid">
+           <div class="navbar-header">
+            <a class="navbar-brand" href="#">GAZETTEER</a>
+           </div>
+          </div>
+        </nav>  
     </header>
     <main>	
-      <div class="description">
-        <h1>Welcome to the Gazetteer!</h1>
           <button class="btn btn-outline-secondary btn-lg" id="location">Find my location!</button>
           <br>
-          <input id="find-address" type="address" placeholder="Please enter an address"/>
+      <form class="form-inline" action="/action_page.php">
+        <div class="form-group">
+          <label>or insert an address manually</label>
+          <input id="find-address" type="address" placeholder="enter an address"/>
           <button class="btn btn-outline-secondary btn-lg" id="address">Search!</button>
-        </div> 
-        <div class="container features">
-          <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-8">   
-              <label class="form-group" for="country">Country:</label>
-              <input class="form-control"  id="country" type="text" />
-          
-              <label class="form-group" for="population">Population:</label>
-              <input class="form-control"  id="population" type="text" />
-           
-              <label class="form-group" for="capital">Capital:</label>
-              <input class="form-control"  id="capital" type="text" />
-      
-              <label class="form-group" for="weather">Weather:</label>
-              <input class="form-control"  id="weather" type="text" />
-       
-              <label class="form-group" for="currency">Currency:</label>
-              <input class="form-control"  id="currency" type="text" />
-
-              <label class="form-group" for="exchange_rate">Exchange rate: $</label>
-              <input class="form-control"  id="exchange_rate" type="text"/>
-  
-              <label class="form-group" for="flag">Flag:</label>
-              <input class="form-control" id="flag" type="text" />
-          </div>
+        </div>
+      </form>
+        {# <form class="form-inline" action="/action_page.php">
+  <div class="form-group">
+    <label for="email">Email address:</label>
+    <input type="email" class="form-control" id="email">
+  </div> #}
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-8"> 
+           <form class="form-horizontal" action="/action_page.php">
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="country">Country:</label>
+                <div class="col-sm-10">
+                  <input class="form-control"  id="country" type="text" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="population">Population:</label>
+                <div class="col-sm-10">
+                  <input class="form-control"  id="population" type="text" />
+                </div>           
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="capital">Capital:</label>
+                <div class="col-sm-10">
+                  <input class="form-control"  id="capital" type="text" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="weather">Weather:</label>
+                <div class="col-sm-10">
+                  <input class="form-control"  id="weather" type="text" />
+                </div>
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="currency">Currency:</label>
+                <div class="col-sm-10">
+                  <input class="form-control"  id="currency" type="text" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="exchange_rate">Exchange rate: $</label>
+                <div class="col-sm-10">
+                  <input class="form-control"  id="exchange_rate" type="text"/>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="flag">Flag:</label>
+                <div class="col-sm-10">
+                  <input class="form-control" id="flag" type="text" />
+                </div>
+              </div>
+            </form>
+            </div>
           <div class="col-lg-4 col-md-4 col-sm-8" id="map"></div>
         </div>
-      </div>
-    </main>
-    
+      </main>
     <footer class="page-footer">
       <div class="footer-copyright text-center">© 2020 Copyright: Tam</div>
       </footer>
-
+    </div>
     <!-- jQuery  -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <!-- bootstrap -->

@@ -50,6 +50,11 @@ $app->post('/api/geolocate', function(Request $request) use($app) {
 
   $geo_result = $openCageClient->geocode($openCageQuery);
   $result = new \stdClass();
+  if(count($geo_result['results']) === 0) { 
+    $result->error = 'Sorry, that location could not be found. Please try again.';
+    return json_encode($result);
+  }
+  $result = new \stdClass();
   $result->country = $geo_result['results'][0]['components']['country'];
   $result->currency = $geo_result['results'][0]['annotations']['currency']['name'];
   $result->flag = $geo_result['results'][0]['annotations']['flag'];
