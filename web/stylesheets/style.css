@@ -9,7 +9,10 @@
         height: 100%;
         width: 100vw;
     }
-
+    #map {
+			width: 600px;
+      height: 400px;
+    }
     .navbar {
       background:#6ab446;
     }
