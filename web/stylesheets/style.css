@@ -11,33 +11,37 @@
     cursor: pointer;
     }
   body {
-        padding: 0;
-        margin: 0;
-        background: #fff;
+    padding: 0;
+    margin: 0;
+    background: #fff;
     }
    
   #map { 
-      width: 600px;
-      height: 400px;
-   }
+    width: 600px;
+    height: 400px;
+    position: relative;
+    }
 
 .container {
     max-width:60em;
     padding: 0.2em;
-   } 
+    } 
 
 footer {
-     background-color: #6ab446;
-   }
-.demo-content{
+    background-color: #6ab446;
+    }
+.main-form {
     padding: 15px;
     font-size: 18px;
     background: #dbdfe5;
     margin-bottom: 15px;
-}
-    .demo-content.bg-alt{
-        background: #abb1b8;
-  } 
+    }
+.map-border {
+    background: #abb1b8;
+    width: 700px;
+    height: 500px;
+    position: relative;
+    } 
 
 @media (min-width: 576px) { 
   .container {
