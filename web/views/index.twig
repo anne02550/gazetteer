@@ -2,9 +2,10 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <!-- bootstrap -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+      
       <title>GAZETTEER</title>
    <!-- bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -16,23 +17,29 @@
     <link rel="stylesheet" href="stylesheets/style.css"/>
   </head>
 
-  <body>
-    <div class=".container">
-
-      <header class="page-header header container-fluid">
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-          <div class="container-fluid">
-           <div class="navbar-header">
+  <body>  
+       <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+          <div class="container"> 
             <a class="navbar-brand" href="#">GAZETTEER</a>
-           </div>
           </div>
         </nav>  
-    </header>
-    <main>	
+  
+    {# <header class="page-header header container-fluid"> 
       <h2 class="text-center my-3">Welcome to Gazetteer!</h2>
 	      <div class="text-center">A mobile friendly website providing location service.</div>
-
-   
+     </header> #}
+ <!-- Header -->
+  <header class="bg-primary py-5 mb-5">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-lg-12">
+          <h1 class="display-4 text-white mt-5 mb-2">Welcome to Gazetteer!</h1>
+          <h5 class="lead mb-5 text-white-50">A mobile friendly website providing location service.</h5>
+        </div>
+      </div>
+    </div>
+  </header> 
+  <div class="container">
           <button class="btn btn-outline-secondary btn-lg" id="location">Find my location!</button>
           <br>
      
@@ -41,65 +48,67 @@
               <button class="btn btn-outline-secondary btn-lg" id="address">Search!</button>
          
 
-        <div class="row">
-          <div class="col-xs-6"> 
-            <div class="main-form">
-            <form >
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for="country">Country:</label>
-                  <div class="col-sm-10">
-                    <input class="form-control"  id="country" type="text" />
-                  </div>
-                </div>
-              <div  class= "form-group row">
-                <label class= "col-sm-2 col-form-label" for="population">Population:</label>
-                  <div class= "col-sm-10">
-                    <input class= "form-control"  id="population" type="text" />
-                  </div>           
-                </div>
-              <div  class= "form-group row">
-                <label class= "col-sm-2 col-form-label" for="capital">Capital:</label>
-                  <div class= "col-sm-10">
-                    <input class= "form-control"  id="capital" type="text" />
-                  </div>
-                </div>
-              <div class= "form-group row">
-                <label class= "col-sm-2 col-form-label" for="weather">Weather:</label>
-                  <div class= "col-sm-10">
-                    <input class= "form-control"  id="weather" type="text" />
-                  </div>
-              <div  class= "form-group row">
-                <label class= "col-sm-2 col-form-label" for="currency">Currency:</label>
-                  <div class= "col-sm-10">
-                    <input class= "form-control"  id="currency" type="text" />
-                  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 mb-5">
+        <form>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="country">Country:</label>
+              <div class="col-sm-10">
+                <input class="form-control"  id="country" type="text" />
               </div>
-              <div  class= "form-group row">
-                <label class= "col-sm-2 col-form-label" for="exchange_rate">Exchange rate: $</label>
-                  <div class= "col-sm-10">
-                    <input class= "form-control"  id="exchange_rate" type="text"/>
-                  </div>
+            </div>
+          <div  class= "form-group row">
+            <label class= "col-sm-2 col-form-label" for="population">Population:</label>
+              <div class= "col-sm-10">
+                <input class= "form-control"  id="population" type="text" />
+              </div>           
+            </div>
+          <div  class= "form-group row">
+            <label class= "col-sm-2 col-form-label" for="capital">Capital:</label>
+              <div class= "col-sm-10">
+                <input class= "form-control"  id="capital" type="text" />
               </div>
-              <div  class= "form-group row">
-                <label class= "col-sm-2 col-form-label" for="flag">Flag:</label>
-                  <div class= "col-sm-10">
-                    <input class= "form-control" id="flag" type="text" />
-                  </div>
+            </div>
+          <div class= "form-group row">
+            <label class= "col-sm-2 col-form-label" for="weather">Weather:</label>
+              <div class= "col-sm-10">
+                <input class= "form-control"  id="weather" type="text" />
+              </div>
+            </div>
+          <div  class= "form-group row">
+              <label class= "col-sm-2 col-form-label" for="currency">Currency:</label>
+                <div class= "col-sm-10">
+                  <input class= "form-control"  id="currency" type="text" />
+                </div>
+              </div>
+          <div  class= "form-group row">
+              <label class= "col-sm-2 col-form-label" for="exchange_rate">Exchange rate: $</label>
+                <div class= "col-sm-10">
+                  <input class= "form-control"  id="exchange_rate" type="text"/>
+                </div>
+              </div>
+          <div  class= "form-group row">
+              <label class= "col-sm-2 col-form-label" for="flag">Flag:</label>
+                <div class= "col-sm-10">
+                  <input class= "form-control" id="flag" type="text" />
+                </div>
               </div>
             </form>
-            </div>
-            </div>
-          <div class="col-xs-6">
-             <div class="map-border">
-                <div id="map"></div>
-             </div>
           </div>
+      <div class="col-md-4 mb-5">
+        <div id="map"></div>
       </div>
-    </main>
-    <footer class="page-footer">
-      <div class="footer-copyright text-center">© 2020 Copyright: Tam</div>
-      </footer>
     </div>
+  </div>
+
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
     <!-- jQuery  -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <!-- bootstrap -->

@@ -1,45 +1,15 @@
+}
 
-  html, body {
-    height: 100%;
-    width: 100vw;
-    }
-  .navbar {
-    background:#6ab446;
-    }
-  .navbar-brand {
-    color: #fff;
-    cursor: pointer;
-    }
   body {
-    padding: 0;
-    margin: 0;
-    background: #fff;
+    padding-top: 56px;
     }
    
   #map { 
     width: 600px;
     height: 400px;
-    position: relative;
     }
 
-.container {
-    max-width:60em;
-    padding: 0.2em;
-    } 
-
-footer {
-    background-color: #6ab446;
-    }
-.main-form {
-  padding: 15px;
-  font-size: 18px;
-  min-height: 300px;
-  background: #59f8bb;
-  margin-bottom: 10px;
-    }
-.map-border {
-    background: #abb1b8;
-    } 
+ 
 
 @media (min-width: 576px) { 
   .container {
