@@ -9,6 +9,12 @@ use Symfony\Component\HttpFoundation\ParameterBag;
 $app = new Silex\Application();
 $app['debug'] = true;
 
+function isSecure() {
+  return
+    (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+    || $_SERVER['SERVER_PORT'] == 443;
+}
+
 $app->before(function (Request $request) {
     if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
         $data = json_decode($request->getContent(), true);
@@ -29,7 +35,7 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 // Our web handlers
 
 $app->get('/', function() use($app) {
-  if ($_SERVER['HTTP_HOST'] != 'localhost:8000' && (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === "off")) {
+  if ($_SERVER['HTTP_HOST'] !== 'localhost:8000' && !isSecure()) {
     $location = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
     header('HTTP/1.1 301 Moved Permanently');
     header('Location: ' . $location);
