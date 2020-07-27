@@ -35,12 +35,12 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 // Our web handlers
 
 $app->get('/', function() use($app) {
-  if ($_SERVER['HTTP_HOST'] !== 'localhost:8000' && !isSecure()) {
-    $location = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-    header('HTTP/1.1 301 Moved Permanently');
-    header('Location: ' . $location);
-    exit;
-  }
+  // if ($_SERVER['HTTP_HOST'] !== 'localhost:8000' && !isSecure()) {
+  //   $location = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+  //   header('HTTP/1.1 301 Moved Permanently');
+  //   header('Location: ' . $location);
+  //   exit;
+  // }
 
   $app['monolog']->addDebug('logging output.');
   return $app['twig']->render('index.twig');
