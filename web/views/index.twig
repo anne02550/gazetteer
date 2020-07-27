@@ -23,34 +23,29 @@
             <a class="navbar-brand" href="#">GAZETTEER</a>
           </div>
         </nav>  
-  
-    {# <header class="page-header header container-fluid"> 
-      <h2 class="text-center my-3">Welcome to Gazetteer!</h2>
-	      <div class="text-center">A mobile friendly website providing location service.</div>
-     </header> #}
- <!-- Header -->
   <header class="bg-primary py-5 mb-5">
     <div class="container h-100">
       <div class="row h-100 align-items-center">
         <div class="col-lg-12">
           <h1 class="display-4 text-white mt-5 mb-2">Welcome to Gazetteer!</h1>
-          <h5 class="lead mb-5 text-white-50">A mobile friendly website providing location service.</h5>
+          <h3 class="lead mb-5 text-white-50">A mobile friendly website providing location service.</h3>
         </div>
       </div>
     </div>
   </header> 
   <div class="container">
+        <form>
           <button class="btn btn-outline-secondary btn-lg" id="location">Find my location!</button>
-          <br>
+          <br/>
      
-              <label>or insert an address manually</label>
+              <label><h5>or insert an address manually</h5></label>
                 <input id="find-address" type="address" placeholder="enter an address"/>
               <button class="btn btn-outline-secondary btn-lg" id="address">Search!</button>
-         
-
+        </form>
+      <br/>
   <div class="container">
     <div class="row">
-      <div class="col-md-8 mb-5">
+      <div class="col-md-6 mb-5">
         <form>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label" for="country">Country:</label>
@@ -96,15 +91,17 @@
               </div>
             </form>
           </div>
-      <div class="col-md-4 mb-5">
-        <div id="map"></div>
+      <div class="col-md-6 mb-5">
+         <div class="col-lg-12">
+          <div id="map"></div>
+        </div>
       </div>
     </div>
   </div>
 
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+  <footer id="footer" class="py-5 bg-dark">
+    <div class="container-fluid">
+      <p class="m-0 text-center text-white">Copyright &copy; Tam's Website 2020</p>
     </div>
     <!-- /.container -->
   </footer>

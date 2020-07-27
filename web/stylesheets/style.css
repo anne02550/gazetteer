@@ -8,6 +8,14 @@
     width: 600px;
     height: 400px;
     }
+  #footer
+    {
+        height: 50px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        width: 100%;
+    }
 
  
 
