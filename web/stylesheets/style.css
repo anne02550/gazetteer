@@ -1,5 +1,7 @@
 
-
+body {
+  padding-top: 56px;
+}
 #map {
     width: 100px;
     height:100px;
