@@ -68,14 +68,11 @@ function getLocationInfo(data) {
 //Find location button logic:
 $(document).ready(
 	function(){
-		$("#location").click(function(e) { 
-			e.preventDefault();
-			navigator.geolocation.getCurrentPosition(function(pos) {
-				var long = pos.coords.longitude;
-				var lat = pos.coords.latitude;
-				getLocationInfo({long: long, lat: lat})
-			});
-		})
+		navigator.geolocation.getCurrentPosition(function(pos) {
+			var long = pos.coords.longitude;
+			var lat = pos.coords.latitude;
+			getLocationInfo({long: long, lat: lat})
+		});
 
 		$("#address").click(function(e){
 			e.preventDefault();
