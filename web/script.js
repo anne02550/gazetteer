@@ -49,7 +49,7 @@ var onApiSuccess = (result) => {
 
 	map.on('locationfound', onLocationFound);
 	map.on('locationerror', onLocationError);
-	map.setView([result.long, result.lat], 13);
+	map.setView([result.lat, result.long], 13);
 };
 
 function getLocationInfo(data) {
