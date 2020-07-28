@@ -2,9 +2,8 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+ 
       
       <title>GAZETTEER</title>
    <!-- bootstrap -->
@@ -35,16 +34,15 @@
     </div>
   </header>  #}     
           {# <button class="btn btn-outline-secondary btn-lg" id="location">Find my location!</button> #}
-      
+      <div>
               <label><h5>Choose a country or enter the country name</h5></label>
                 <input id="find-address" type="address" placeholder="enter a country"/>
               <button class="btn btn-outline-secondary btn-lg" id="address">Search!</button>
-      <br>
+                <br>
+      </div>
       
       <div id="map-holder">
-        <div class="container fill">
-          <div id="map"></div>
-        </div>
+        <div id="mapid"></div>
       </div>
 
   <div class="container">

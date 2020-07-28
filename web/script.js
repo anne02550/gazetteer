@@ -20,8 +20,8 @@ var onApiSuccess = (result) => {
 		// Maps error on local dev environment so skip
 		return;
 	}
-
-	var map = L.map('map').fitWorld().setView([result.long, result.lat], 13);
+    // MAP:
+	var map = L.map('map').fitWorld();
 
 	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=sk.eyJ1IjoiYW5uZTAyNTUwIiwiYSI6ImNrY2oxeW94NTE5cWUydWxwenV2dHN1cGUifQ.W3bizGsISmL3lVacVw8Wlg', {
 		maxZoom: 18,
@@ -48,8 +48,7 @@ var onApiSuccess = (result) => {
 
 	map.on('locationfound', onLocationFound);
 	map.on('locationerror', onLocationError);
-
-	// map.locate({setView: true, maxZoom: 16});
+	map.setView([result.long, result.lat], 13);
 };
 
 function getLocationInfo(data) {
