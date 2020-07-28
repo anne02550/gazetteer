@@ -13,6 +13,13 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 	zoomOffset: -1
 }).addTo(map);
 
+var pinIcon = L.icon({
+    iconUrl: 'img/pin.png',
+    iconSize:     [95, 95], // size of the icon
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+
 var onApiSuccess = (result) => {
 	if(result.error) {
 		alert(result.error);
@@ -28,18 +35,12 @@ var onApiSuccess = (result) => {
 	var exchangeRateConvert = (1/result.exchange_rate).toPrecision(3);
 	$("#exchange_rate").val(exchangeRateConvert);
 
-	if (location.protocol !== 'https:') {
-		// Maps error on local dev environment so skip
-		return;
-	}
     // MAP:
 
 	function onLocationFound(e) {
 		var radius = e.accuracy / 2;
 
-		L.marker(e.latlng).addTo(map)
-			.bindPopup("You are within " + radius + " meters from this point").openPopup();
-
+		L.marker(e.latlng, {icon: pinIcon}).addTo(map);
 		L.circle(e.latlng, radius).addTo(map);
 	}
 
@@ -50,6 +51,7 @@ var onApiSuccess = (result) => {
 	map.on('locationfound', onLocationFound);
 	map.on('locationerror', onLocationError);
 	map.setView([result.lat, result.long], 13);
+	L.marker([result.lat, result.long], {icon: pinIcon}).addTo(map);
 };
 
 function getLocationInfo(data) {
