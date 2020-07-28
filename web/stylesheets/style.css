@@ -5,8 +5,8 @@
     }
    
   #map { 
-    min-width: 600px;
-    min-height: 400px;
+    width: 600px;
+    height: 400px;
     }
   #footer
     {
