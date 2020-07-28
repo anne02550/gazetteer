@@ -66,7 +66,8 @@ function getLocationInfo(data) {
 //Find location button logic:
 $(document).ready(
 	function(){
-		$("#location").click(function() { 
+		$("#location").click(function(e) { 
+			e.preventDefault();
 			navigator.geolocation.getCurrentPosition(function(pos) {
 				var long = pos.coords.longitude;
 				var lat = pos.coords.latitude;
@@ -74,7 +75,8 @@ $(document).ready(
 			});
 		})
 
-		$("#address").click(function(){
+		$("#address").click(function(e){
+			e.preventDefault();
 			var address = $("#find-address").val();
 			getLocationInfo({ address: address})
 		})
