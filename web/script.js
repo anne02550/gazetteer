@@ -2,6 +2,9 @@
 var url = "api/geolocate";
 
 var map = L.map('map', {scrollWheelZoom: false}).fitWorld();
+L.control.zoom({
+	position: 'bottomright'
+}).addTo(map);
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=sk.eyJ1IjoiYW5uZTAyNTUwIiwiYSI6ImNrY2oxeW94NTE5cWUydWxwenV2dHN1cGUifQ.W3bizGsISmL3lVacVw8Wlg', {
 	maxZoom: 18,
@@ -40,7 +43,7 @@ var onApiSuccess = (result) => {
 	function onLocationFound(e) {
 		var radius = e.accuracy / 2;
 
-		L.marker(e.latlng, {icon: pinIcon}).addTo(map);
+		var marker = L.marker(e.latlng, {icon: pinIcon});
 		L.circle(e.latlng, radius).addTo(map);
 	}
 
@@ -51,7 +54,8 @@ var onApiSuccess = (result) => {
 	map.on('locationfound', onLocationFound);
 	map.on('locationerror', onLocationError);
 	map.setView([result.lat, result.long], 13);
-	L.marker([result.lat, result.long], {icon: pinIcon}).addTo(map);
+	var marker = L.marker([result.lat, result.long], {icon: pinIcon});
+	marker.addTo(map);
 };
 
 function getLocationInfo(data) {
