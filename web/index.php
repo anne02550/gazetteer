@@ -68,6 +68,7 @@ $app->post('/api/geolocate', function(Request $request) use($app) {
   $result-> currency_code = $currency_code;
 
   $iso_code = $geo_result['results'][0]['components']['ISO_3166-1_alpha-3'];
+  $result -> iso_code_2 = $geo_result['results'][0]['components']['ISO_3166-1_alpha-2'];
   $country_code = $geo_result['results'][0]['components']['country_code'];
   $result->country_code = $country_code;
 
@@ -121,7 +122,7 @@ $app->post('/api/geolocate', function(Request $request) use($app) {
 
   $result -> exchange_rate = json_decode($currencyOutput) -> rates -> $currency_code;
 
-  $countryBordersJson = file_get_contents("../country-borders/" . $country_code  . ".json");
+  $countryBordersJson = file_get_contents("../country-borders/" . $iso_code  . ".json");
   $countryBorders = json_decode($countryBordersJson, true);
 
   $result -> borders = $countryBorders;

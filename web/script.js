@@ -30,7 +30,7 @@ var sidebar = L.control.sidebar('sidebar', {
 
 map.addControl(sidebar);
 
-var onApiSuccess = (result) => {
+var onApiSuccess = (result, countryView) => {
 	if(result.error) {
 		alert(result.error);
 		return;
@@ -44,6 +44,7 @@ var onApiSuccess = (result) => {
 	$("#flag").text(result.flag);
 	var exchangeRateConvert = (1/result.exchange_rate).toPrecision(3);
 	$("#exchange_rate").text(exchangeRateConvert);
+	$("#flag").attr('src', `http://www.geognos.com/api/en/countries/flag/${result.iso_code_2}.png`)
 
     // MAP:
 
@@ -64,12 +65,13 @@ var onApiSuccess = (result) => {
 	var marker = L.marker([result.lat, result.long], {icon: pinIcon});
 	marker.addTo(map);
 
-	sidebar.show();
-
-	var polygon = L.polygon(result.borders, {color: 'red'});
-	polygon.addTo(map);
-
-	map.fitBounds(polygon.getBounds());
+	if(countryView) {
+		sidebar.show();
+		var polygon = L.polygon(result.borders, {color: 'green'});
+		polygon.addTo(map);
+	
+		map.fitBounds(polygon.getBounds());
+	}
 };
 
 function closeSideBar() {
@@ -77,10 +79,10 @@ function closeSideBar() {
 };
 
 
-function getLocationInfo(data) {
+function getLocationInfo(data, countryView) {
 	$.ajax({
 		url, 
-		success: onApiSuccess,
+		success: (result) => onApiSuccess(result, countryView),
 		error: (err) => alert(JSON.stringify(err)),
 		type : "POST",
 		dataType: "json",
@@ -94,11 +96,11 @@ $(document).ready(
 		navigator.geolocation.getCurrentPosition(function(pos) {
 			var long = pos.coords.longitude;
 			var lat = pos.coords.latitude;
-			getLocationInfo({long: long, lat: lat})
+			getLocationInfo({long: long, lat: lat}, false)
 		});
 
 		$("#address").on('change', function(e){
 			var address = $("#address").val();
-			getLocationInfo({ address: address})
+			getLocationInfo({ address: address}, true)
 		});
 });
