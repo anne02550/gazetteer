@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
     integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
     crossorigin=""/>
+    <!-- sidebar -->
+    <link rel="stylesheet" href="external/sidebar/L.Control.Sidebar.css" />
     <!-- my css -->
     <link rel="stylesheet" href="stylesheets/style.css"/>
   </head>
@@ -42,63 +44,65 @@
       </nav>  
 
 {# map #}
-        <div id="map-holder">
-          <div id="map"></div>
-        </div>
-    
-{# 
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-6 col-lg-8">
-        <form>
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label" for="country">Country:</label>
-              <div class="col-sm-10">
-                <input class="form-control"  id="country" type="text" disabled/>
-              </div>
-            </div>
-          <div  class= "form-group row">
-            <label class= "col-sm-2 col-form-label" for="population">Population:</label>
-              <div class= "col-sm-10">
-                <input class= "form-control"  id="population" type="text" disabled/>
-              </div>           
-            </div>
-          <div  class= "form-group row">
-            <label class= "col-sm-2 col-form-label" for="capital">Capital:</label>
-              <div class= "col-sm-10">
-                <input class= "form-control"  id="capital" type="text" disabled/>
-              </div>
-            </div>
-          <div class= "form-group row">
-            <label class= "col-sm-2 col-form-label" for="weather">Weather:</label>
-              <div class= "col-sm-10">
-                <input class= "form-control"  id="weather" type="text" disabled/>
-              </div>
-            </div>
-          <div  class= "form-group row">
-              <label class= "col-sm-2 col-form-label" for="currency">Currency:</label>
-                <div class= "col-sm-10">
-                  <input class= "form-control"  id="currency" type="text" disabled/>
+
+      <div id="sidebar">
+          <h1>leaflet-sidebar</h1>
+            <div class="container">
+          <div class="row">
+            <div class="col-xs-12 col-sm-6 col-lg-8">
+              <form>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label" for="country">Country:</label>
+                    <div class="col-sm-10">
+                      <p id="country" > </p>
+                    </div>
+                  </div>
+                <div  class= "form-group row">
+                  <label class= "col-sm-2 col-form-label" for="population">Population:</label>
+                    <div class= "col-sm-10">
+                      <input class= "form-control"  id="population" type="text" disabled/>
+                    </div>           
+                  </div>
+                <div  class= "form-group row">
+                  <label class= "col-sm-2 col-form-label" for="capital">Capital:</label>
+                    <div class= "col-sm-10">
+                      <input class= "form-control"  id="capital" type="text" disabled/>
+                    </div>
+                  </div>
+                <div class= "form-group row">
+                  <label class= "col-sm-2 col-form-label" for="weather">Weather:</label>
+                    <div class= "col-sm-10">
+                      <input class= "form-control"  id="weather" type="text" disabled/>
+                    </div>
+                  </div>
+                <div  class= "form-group row">
+                    <label class= "col-sm-2 col-form-label" for="currency">Currency:</label>
+                      <div class= "col-sm-10">
+                        <input class= "form-control"  id="currency" type="text" disabled/>
+                      </div>
+                    </div>
+                <div  class= "form-group row">
+                    <label class= "col-sm-2 col-form-label" for="exchange_rate">Exchange rate: $</label>
+                      <div class= "col-sm-10">
+                        <input class= "form-control"  id="exchange_rate" type="text" disabled/>
+                      </div>
+                    </div>
+                <div  class= "form-group row">
+                    <label class= "col-sm-2 col-form-label" for="flag">Flag:</label>
+                      <div class= "col-sm-10">
+                        <input class= "form-control" id="flag" type="text" disabled/>
+                      </div>
+                    </div>
+                  </form>
                 </div>
-              </div>
-          <div  class= "form-group row">
-              <label class= "col-sm-2 col-form-label" for="exchange_rate">Exchange rate: $</label>
-                <div class= "col-sm-10">
-                  <input class= "form-control"  id="exchange_rate" type="text" disabled/>
-                </div>
-              </div>
-          <div  class= "form-group row">
-              <label class= "col-sm-2 col-form-label" for="flag">Flag:</label>
-                <div class= "col-sm-10">
-                  <input class= "form-control" id="flag" type="text" disabled/>
-                </div>
-              </div>
-            </form>
+            <div class="col-xs-6 col-lg-4"></div>
           </div>
-      <div class="col-xs-6 col-lg-4"></div>
-    </div>
-  </div>
- #}
+        </div>
+      </div>
+      <div id="map-holder">
+        <div id="map"></div>
+      </div>
+    
   <footer id="footer" class="py-5 bg-dark">
     <div class="container-fluid">
       <p class="m-0 text-center text-white">Copyright &copy; Tam's Website 2020</p>
@@ -116,6 +120,8 @@
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
     integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
     crossorigin=""></script>
+    <!-- sidebar -->
+    <script src="external/sidebar/L.Control.Sidebar.js"></script>
     <!-- my script -->
     <script src="script.js"></script>
 

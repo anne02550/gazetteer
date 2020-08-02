@@ -23,13 +23,19 @@ var pinIcon = L.icon({
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
+var sidebar = L.control.sidebar('sidebar', {
+	closeButton: true,
+	position: 'left'
+});
+map.addControl(sidebar);
+
 var onApiSuccess = (result) => {
 	if(result.error) {
 		alert(result.error);
 		return;
 	}
 
-	$("#country").val(result.country);
+	$("#country").text(result.country);
 	$("#population").val(result.population.toLocaleString());
 	$("#capital").val(result.capital);
 	$("#weather").val(result.weather);
@@ -81,6 +87,8 @@ var onApiSuccess = (result) => {
 	map.setView([result.lat, result.long], 13);
 	var marker = L.marker([result.lat, result.long], {icon: pinIcon});
 	marker.addTo(map);
+
+	sidebar.show();
 };
 
 function getLocationInfo(data) {
@@ -106,5 +114,5 @@ $(document).ready(
 		$("#address").on('change', function(e){
 			var address = $("#address").val();
 			getLocationInfo({ address: address})
-		})
+		});
 });
