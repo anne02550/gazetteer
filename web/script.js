@@ -36,13 +36,13 @@ var onApiSuccess = (result) => {
 	}
 
 	$("#country").text(result.country);
-	$("#population").val(result.population.toLocaleString());
-	$("#capital").val(result.capital);
-	$("#weather").val(result.weather);
-	$("#currency").val(result.currency);
-	$("#flag").val(result.flag);
+	$("#population").text(result.population.toLocaleString());
+	$("#capital").text(result.capital);
+	$("#weather").text(result.weather);
+	$("#currency").text(result.currency);
+	$("#flag").text(result.flag);
 	var exchangeRateConvert = (1/result.exchange_rate).toPrecision(3);
-	$("#exchange_rate").val(exchangeRateConvert);
+	$("#exchange_rate").text(exchangeRateConvert);
 /*  function renderGeoname(geoname) {
 	var flagElem = document.getElementById('flag');
 	var countryNameElem = document.getElementById('countryName');
