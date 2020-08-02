@@ -45,13 +45,16 @@
       </nav>  
 {# side bar :  #}
       <div id="sidebar">
-          <h1 id="country"></h1>    
-            <p>Population: <span id="population"></span> </p>
-            <p>Capital: <span id="capital"></span> </p>
-            <p>Weather:  <span id="weather"></span> </p>
-            <p>Currency: <span id="currency"></span> </p>
-            <p>Exchange rate: $ <span id="exchange_rate"></span> </p>
-            <p>Flag:  <span id="flag"></span> </p> 
+        <button id='close' type="button" class="close" aria-label="Close" onclick="closeSideBar()">
+           <span aria-hidden="true">&times;</span>
+        </button> 
+        <img id="flag" />
+        <h1 id="country"></h1>  
+          <p>Population: <span id="population"></span> </p>
+          <p>Capital: <span id="capital"></span> </p>
+          <p>Weather:  <span id="weather"></span> </p>
+          <p>Currency: <span id="currency"></span> </p>
+          <p>Exchange rate: $ <span id="exchange_rate"></span> </p>
       </div>
 {# map :  #}
       <div id="map-holder">

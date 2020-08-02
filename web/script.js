@@ -27,6 +27,7 @@ var sidebar = L.control.sidebar('sidebar', {
 	closeButton: true,
 	position: 'left'
 });
+
 map.addControl(sidebar);
 
 var onApiSuccess = (result) => {
@@ -43,31 +44,6 @@ var onApiSuccess = (result) => {
 	$("#flag").text(result.flag);
 	var exchangeRateConvert = (1/result.exchange_rate).toPrecision(3);
 	$("#exchange_rate").text(exchangeRateConvert);
-/*  function renderGeoname(geoname) {
-	var flagElem = document.getElementById('flag');
-	var countryNameElem = document.getElementById('countryName');
-	var continentNameElem = document.getElementById('continent');
-	var capitalNameElem = document.getElementById('capital');
-	var exchangeRateElem = document.getElementById('exchangeRate');
-	var currencyElem = document.getElementById('currency');
-	var populationElem = document.getElementById('population');
-	var wikiLink = document.getElementById('wikiLink');
-	
-	function numberWithCommas(x) {
-		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	}
-	
-	flagElem.src = `http://www.geognos.com/api/en/countries/flag/${geoname.countryCode}.png`;
-	countryNameElem.innerHTML = geoname.countryName;
-	continentNameElem.innerHTML = geoname.continentName;
-	capitalNameElem.innerHTML = geoname.capital;
-	currencyElem.innerHTML = geoname.currencyCode;
-	populationElem.innerHTML = numberWithCommas(geoname.population);
-	exchangeRateElem.innerHTML = rates.rates[geoname.currencyCode] + ' to 1 USD';
-	wikiLink.href = `https://en.wikipedia.org/wiki/${geoname.countryName}`;
-
-}
-*/
 
     // MAP:
 
@@ -89,7 +65,17 @@ var onApiSuccess = (result) => {
 	marker.addTo(map);
 
 	sidebar.show();
+
+	var polygon = L.polygon(result.borders, {color: 'red'});
+	polygon.addTo(map);
+
+	map.fitBounds(polygon.getBounds());
 };
+
+function closeSideBar() {
+    sidebar.hide()
+};
+
 
 function getLocationInfo(data) {
 	$.ajax({
