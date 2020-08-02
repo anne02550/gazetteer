@@ -17,27 +17,36 @@
   </head>
 
   <body>  
+     <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Dropdown button
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            {% for country in countries %}
+                <a class="dropdown-item" href="#">{{country|e}}</a>
+            {% endfor %}
+    </div>
+    </div>
+  {# nav bar #}
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <a class="navbar-brand" href="#">GAZETTEER</a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        </div>
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-            <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" id="find-address" type="search" placeholder="Enter a country" aria-label="Search">
-              <button class="btn-success my-2 my-sm-0" id="address" type="submit">Search</button>
-            </form>
-          </li>
-        </ul>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
+        <form class="form-inline my-2 my-lg-0">
+          <select id="address" class="form-control mr-sm-2" id="find-address" aria-label="Search">
+            <option value="" disabled selected>Select a country</option>
+            {% for country in countries %}
+              <option value="{{country|e}}">{{country|e}}</option>
+            {% endfor %} #}
+          </select>
+        </form>
       </nav>  
 
-     
-          {# <button class="btn btn-outline-secondary btn-lg" id="location">Find my location!</button> #}
+{# map #}
         <div id="map-holder">
           <div id="map"></div>
         </div>
     
-
+{# 
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-sm-6 col-lg-8">
@@ -89,13 +98,13 @@
       <div class="col-xs-6 col-lg-4"></div>
     </div>
   </div>
-
+ #}
   <footer id="footer" class="py-5 bg-dark">
     <div class="container-fluid">
       <p class="m-0 text-center text-white">Copyright &copy; Tam's Website 2020</p>
     </div>
-    <!-- /.container -->
   </footer>
+
 
     <!-- jQuery  -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

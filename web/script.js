@@ -37,6 +37,31 @@ var onApiSuccess = (result) => {
 	$("#flag").val(result.flag);
 	var exchangeRateConvert = (1/result.exchange_rate).toPrecision(3);
 	$("#exchange_rate").val(exchangeRateConvert);
+/*  function renderGeoname(geoname) {
+	var flagElem = document.getElementById('flag');
+	var countryNameElem = document.getElementById('countryName');
+	var continentNameElem = document.getElementById('continent');
+	var capitalNameElem = document.getElementById('capital');
+	var exchangeRateElem = document.getElementById('exchangeRate');
+	var currencyElem = document.getElementById('currency');
+	var populationElem = document.getElementById('population');
+	var wikiLink = document.getElementById('wikiLink');
+	
+	function numberWithCommas(x) {
+		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+	
+	flagElem.src = `http://www.geognos.com/api/en/countries/flag/${geoname.countryCode}.png`;
+	countryNameElem.innerHTML = geoname.countryName;
+	continentNameElem.innerHTML = geoname.continentName;
+	capitalNameElem.innerHTML = geoname.capital;
+	currencyElem.innerHTML = geoname.currencyCode;
+	populationElem.innerHTML = numberWithCommas(geoname.population);
+	exchangeRateElem.innerHTML = rates.rates[geoname.currencyCode] + ' to 1 USD';
+	wikiLink.href = `https://en.wikipedia.org/wiki/${geoname.countryName}`;
+
+}
+*/
 
     // MAP:
 
@@ -78,9 +103,8 @@ $(document).ready(
 			getLocationInfo({long: long, lat: lat})
 		});
 
-		$("#address").click(function(e){
-			e.preventDefault();
-			var address = $("#find-address").val();
+		$("#address").on('change', function(e){
+			var address = $("#address").val();
 			getLocationInfo({ address: address})
 		})
 });
