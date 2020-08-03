@@ -60,6 +60,16 @@ var onApiSuccess = (result, countryView) => {
 	var exchangeRateConvert = (1/result.exchange_rate).toPrecision(3);
 	$("#exchange_rate").text(exchangeRateConvert);
 	$("#flag").attr('src', `http://www.geognos.com/api/en/countries/flag/${result.iso_code_2}.png`)
+	$("#latitude").text(result.lat);
+	$("#longitude").text(result.long);
+	$("#speed-in").text(result.drive_speed_in);
+	$("#drive-on").text(result.drive_on);
+	$("#currency-symbol").text(result.currency_symbol);
+	$("#currency-code").text(result.currency_code);
+	$("#continent").text(result.continent  );
+	$("#subregion").text(result.subregion );
+	var languages = result.languages.map(l => l.name).join(", ");
+	$("#languages").text(languages);
 
 	// MAP:
 	while(mapItems.length) {

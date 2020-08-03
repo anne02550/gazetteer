@@ -98,6 +98,24 @@ $app->post('/api/geolocate', function(Request $request) use($app) {
   $weatherOutput = curl_exec($curl);
   $result -> weather = json_decode($weatherOutput) -> weather[0] -> description;
 
+  // start to call rest countries:
+  // $iso_code
+  // https://restcountries.eu/rest/v2/alpha/GBR
+  $curl = curl_init();
+  $rest_countries_query = "https://restcountries.eu/rest/v2/alpha/" . $iso_code;
+  $options = [
+    CURLOPT_TIMEOUT => 5000,
+    CURLOPT_URL => $rest_countries_query,
+    CURLOPT_RETURNTRANSFER => 1
+  ];
+  curl_setopt_array($curl, $options);
+  $restCountryOutput = json_decode(curl_exec($curl));
+  $result -> region = $restCountryOutput -> region;
+  $result -> subregion = $restCountryOutput -> subregion;
+  $result -> languages = $restCountryOutput -> languages;
+  $result -> currency_symbol = $restCountryOutput -> currencies[0]->symbol;
+
+
   // Call to geonames
   $curl = curl_init();
   $geonames_query = "http://api.geonames.org/countryInfoJSON?formatted=true&lang=eng&country=" . $country_code . "&username=annepham&style=full";
