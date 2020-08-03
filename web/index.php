@@ -62,6 +62,10 @@ $app->post('/api/geolocate', function(Request $request) use($app) {
   $result = new \stdClass();
   $result->country = $geo_result['results'][0]['components']['country'];
   $result->currency = $geo_result['results'][0]['annotations']['currency']['name'];
+  $result->currency_iso_code = $geo_result['results'][0]['annotations']['currency']['iso_code'];
+  $result->drive_on = $geo_result['results'][0]['annotations']['roadinfo']['drive_on'];
+  $result->drive_speed_in = $geo_result['results'][0]['annotations']['roadinfo']['speed_in'];
+
   $result->flag = $geo_result['results'][0]['annotations']['flag'];
 
   $currency_code = $geo_result['results'][0]['annotations']['currency']['iso_code'];
@@ -71,6 +75,7 @@ $app->post('/api/geolocate', function(Request $request) use($app) {
   $result -> iso_code_2 = $geo_result['results'][0]['components']['ISO_3166-1_alpha-2'];
   $country_code = $geo_result['results'][0]['components']['country_code'];
   $result->country_code = $country_code;
+  $result->continent = $geo_result['results'][0]['components']['continent'];
 
   if($long === null || $lat === null)
   {
@@ -126,7 +131,6 @@ $app->post('/api/geolocate', function(Request $request) use($app) {
   $countryBorders = json_decode($countryBordersJson, true);
 
   $result -> borders = $countryBorders;
- 
 
   return json_encode($result);
 });
