@@ -2,7 +2,7 @@
 var url = "api/geolocate";
 
 var mapItems = [];
-var map = L.map('map', {scrollWheelZoom: false}).fitWorld();
+var map = L.map('map').fitWorld();
 L.control.zoom({
 	position: 'bottomright'
 }).addTo(map);
@@ -34,7 +34,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 var pinIcon = L.icon({
     iconUrl: 'img/pin.png',
     iconSize:     [95, 95], // size of the icon
-    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    iconAnchor:   [47, 95], // point of the icon which will correspond to marker's location
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
@@ -60,8 +60,8 @@ var onApiSuccess = (result, countryView, showCircle) => {
 	var exchangeRateConvert = (1/result.exchange_rate).toPrecision(3);
 	$("#exchange_rate").text(exchangeRateConvert);
 	$("#flag").attr('src', `http://www.geognos.com/api/en/countries/flag/${result.iso_code_2}.png`)
-	$("#latitude").text(result.lat);
-	$("#longitude").text(result.long);
+	$("#latitude").text(result.capital_lat);
+	$("#longitude").text(result.capital_long);
 	$("#speed-in").text(result.drive_speed_in);
 	$("#drive-on").text(result.drive_on);
 	$("#currency-symbol").text(result.currency_symbol);
@@ -78,17 +78,24 @@ var onApiSuccess = (result, countryView, showCircle) => {
 	};
 
 	map.setView([result.lat, result.long], 13);
-	var marker = L.marker([result.lat, result.long], {icon: pinIcon});
-	marker.addTo(map);
-	mapItems.push(marker);
+
 
 	if(countryView) {
+		var marker = L.marker([result.capital_lat, result.capital_long], {icon: pinIcon});
+		marker.addTo(map);
+		mapItems.push(marker);
+
 		sidebar.show();
 		var polygon = L.polygon(result.borders, {color: 'green'});
 		polygon.addTo(map);
 		mapItems.push(polygon);
 	
 		map.fitBounds(polygon.getBounds());
+	}
+	else{
+		var marker = L.marker([result.lat, result.long], {icon: pinIcon});
+		marker.addTo(map);
+		mapItems.push(marker);
 	}
 
 	if(showCircle) {
