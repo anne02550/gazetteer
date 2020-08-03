@@ -6,7 +6,7 @@ html, body {
 #map {
   height: 100vh;
   width: 100vw;
-  opacity: 10;
+
 }
 
 #map-holder {
@@ -22,8 +22,9 @@ h3 {
 }
 
 p {
-  font-weight: bold;
+
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 15px;
 }
 
 #flag {
@@ -38,7 +39,7 @@ p {
 } 
 #footer {
     height: 50px;
-    position: absolute;
+    position: fixed;
     left: 0;
     right: 0;
     width: 100%;

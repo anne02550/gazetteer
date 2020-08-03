@@ -1,10 +1,25 @@
 
 var url = "api/geolocate";
 
+var mapItems = [];
 var map = L.map('map', {scrollWheelZoom: false}).fitWorld();
 L.control.zoom({
 	position: 'bottomright'
 }).addTo(map);
+
+function onLocationFound(e) {
+	var radius = e.accuracy / 2;
+
+	var marker = L.marker(e.latlng, {icon: pinIcon});
+	L.circle(e.latlng, radius).addTo(map);
+}
+
+function onLocationError(e) {
+	alert(e.message);
+}
+
+map.on('locationfound', onLocationFound);
+map.on('locationerror', onLocationError);
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=sk.eyJ1IjoiYW5uZTAyNTUwIiwiYSI6ImNrY2oxeW94NTE5cWUydWxwenV2dHN1cGUifQ.W3bizGsISmL3lVacVw8Wlg', {
 	maxZoom: 18,
@@ -46,29 +61,22 @@ var onApiSuccess = (result, countryView) => {
 	$("#exchange_rate").text(exchangeRateConvert);
 	$("#flag").attr('src', `http://www.geognos.com/api/en/countries/flag/${result.iso_code_2}.png`)
 
-    // MAP:
+	// MAP:
+	while(mapItems.length) {
+		var item = mapItems.pop();
+		map.removeLayer(item);
+	};
 
-	function onLocationFound(e) {
-		var radius = e.accuracy / 2;
-
-		var marker = L.marker(e.latlng, {icon: pinIcon});
-		L.circle(e.latlng, radius).addTo(map);
-	}
-
-	function onLocationError(e) {
-		alert(e.message);
-	}
-
-	map.on('locationfound', onLocationFound);
-	map.on('locationerror', onLocationError);
 	map.setView([result.lat, result.long], 13);
 	var marker = L.marker([result.lat, result.long], {icon: pinIcon});
 	marker.addTo(map);
+	mapItems.push(marker);
 
 	if(countryView) {
 		sidebar.show();
 		var polygon = L.polygon(result.borders, {color: 'green'});
 		polygon.addTo(map);
+		mapItems.push(polygon);
 	
 		map.fitBounds(polygon.getBounds());
 	}
