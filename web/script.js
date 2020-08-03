@@ -45,7 +45,7 @@ var sidebar = L.control.sidebar('sidebar', {
 
 map.addControl(sidebar);
 
-var onApiSuccess = (result, countryView) => {
+var onApiSuccess = (result, countryView, showCircle) => {
 	if(result.error) {
 		alert(result.error);
 		return;
@@ -90,6 +90,11 @@ var onApiSuccess = (result, countryView) => {
 	
 		map.fitBounds(polygon.getBounds());
 	}
+
+	if(showCircle) {
+		var circle = L.circle([result.lat, result.long], {radius: 4000}).addTo(map);
+		mapItems.push(circle);
+	}
 };
 
 function closeSideBar() {
@@ -97,10 +102,10 @@ function closeSideBar() {
 };
 
 
-function getLocationInfo(data, countryView) {
+function getLocationInfo(data, countryView, showCircle) {
 	$.ajax({
 		url, 
-		success: (result) => onApiSuccess(result, countryView),
+		success: (result) => onApiSuccess(result, countryView, showCircle),
 		error: (err) => alert(JSON.stringify(err)),
 		type : "POST",
 		dataType: "json",
@@ -114,11 +119,11 @@ $(document).ready(
 		navigator.geolocation.getCurrentPosition(function(pos) {
 			var long = pos.coords.longitude;
 			var lat = pos.coords.latitude;
-			getLocationInfo({long: long, lat: lat}, false)
+			getLocationInfo({long: long, lat: lat}, false, true)
 		});
 
 		$("#address").on('change', function(e){
 			var address = $("#address").val();
-			getLocationInfo({ address: address}, true)
+			getLocationInfo({ address: address}, true, false)
 		});
 });
