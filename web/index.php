@@ -92,6 +92,7 @@ $app->post('/api/geolocate', function(Request $request) use($app) {
     return json_encode($result);
   }
 
+  // Call for Sidebar information:
   $currency_code = $geo_result['results'][0]['annotations']['currency']['iso_code'];
   $iso_code = $geo_result['results'][0]['components']['ISO_3166-1_alpha-3'];
   $country_code = $geo_result['results'][0]['components']['country_code'];
@@ -155,7 +156,8 @@ $app->post('/api/geolocate', function(Request $request) use($app) {
     $weather_long = $capital_long;
     $weather_lat = $capital_lat;
   }
-   
+  
+  // weather forecast:
   $weather_url = "api.openweathermap.org/data/2.5/onecall?lat=" . $weather_lat . "&lon=" . $weather_long . "&appid=8521f4625e53b1542f06039f7280aad8";
   $weatherOutput = call_json_api($weather_url);
   

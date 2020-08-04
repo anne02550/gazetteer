@@ -7,6 +7,7 @@ L.control.zoom({
 	position: 'bottomright'
 }).addTo(map);
 
+// ERROR handling:
 function onLocationFound(e) {
 	var radius = e.accuracy / 2;
 
@@ -31,6 +32,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 	zoomOffset: -1
 }).addTo(map);
 
+// PIN icon:
 var pinIcon = L.icon({
     iconUrl: 'img/pin.png',
     iconSize:     [60, 60], // size of the icon
@@ -45,6 +47,7 @@ var sidebar = L.control.sidebar('sidebar', {
 
 map.addControl(sidebar);
 
+// ALL side bar information display :
 var onApiSuccess = (result, countryView, showCircle) => {
 	if(result.error) {
 		alert(result.error);
@@ -71,6 +74,7 @@ var onApiSuccess = (result, countryView, showCircle) => {
 	var languages = result.languages.map(l => l.name).join(", ");
 	$("#languages").text(languages);
 
+//  wikipedia display
 	var wikiDisplay = $("#wiki");
 	if(result.wiki_link) {
 		wikiDisplay.attr("href", result.wiki_link);
@@ -80,6 +84,8 @@ var onApiSuccess = (result, countryView, showCircle) => {
 		wikiDisplay.hide();
 	}
 
+
+	// Weather forecast display:
 	var forecast = result.daily_forecast;
 	$("#forecast").text(JSON.stringify(forecast.map(f => {
 		var date = new Date(f.dt * 1000);
@@ -89,7 +95,7 @@ var onApiSuccess = (result, countryView, showCircle) => {
 		};
 	})));
 
-	// MAP:
+	// MAP - outline country - circle location - logic:
 	while(mapItems.length) {
 		var item = mapItems.pop();
 		map.removeLayer(item);

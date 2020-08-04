@@ -19,8 +19,7 @@
   </head>
 
   <body>  
-    <div class="container">{# container div  #}
-
+    <div class = "container">
       {# nav bar #}
       <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
         <a class="navbar-brand" href="#">GAZETTEER</a>
@@ -34,10 +33,8 @@
             </select>
           </form>
       </nav>
-
-    {# side bar :  #}
-      <div class="row" id="body-row">
-        <divid="sidebar-container" class="sidebar-expanded d-none d-md-block col-2">
+    {# side bar :  #}   
+        <div id="sidebar-container" class="sidebar-expanded d-none d-md-block col-2">
           <div id="sidebar" class="sidebar">
             <button id='close' type="button" class="close" aria-label="Close" onclick="closeSideBar()">
               <span aria-hidden="true"> &times; </span>
@@ -63,24 +60,20 @@
             <h4>Driving:</h4>
               <p>Drive on: <span id="drive-on"></span> </p>
               <p>Speed in: <span id="speed-in"></span> </p>
-          </div>        {# side bar #}
-        </div>   {# sidebar container #}
-      </div>  {# side bar row}
-
-    </div> {# container /div  #}
-
-     {# map :  #}
-    <div id="map-holder">
-      <div id="map"></div>
-    </div>
-
+          </div>       
+        </div>  
+  {# container div end #}
+  </div> 
+    {# map :  #}
+  <div id="map-holder">
+    <div id="map"></div>
+  </div>
 
   <footer id="footer" class="py-5 bg-dark">
     <div class="container-fluid">
       <p class="m-0 text-center text-white">Copyright &copy; Tam's Website 2020</p>
-    </div> {# container /div  #}
+    </div> 
   </footer>
-
 
     <!-- jQuery  -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -96,7 +89,6 @@
     <script src="external/sidebar/L.Control.Sidebar.js"></script>
     <!-- my script -->
     <script src="script.js"></script>
-
-    
+   
   </body>
 </html>
