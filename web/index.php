@@ -22,6 +22,21 @@ function call_json_api($url) {
   return json_decode($output);
 }
 
+function check_wiki_page_exists($url) {
+  $curl = curl_init();
+  $options = [
+    CURLOPT_TIMEOUT => 5000,
+    CURLOPT_URL => $url,
+    CURLOPT_RETURNTRANSFER => 1
+  ];
+  curl_setopt_array($curl, $options);
+  $output = curl_exec($curl);
+
+  $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+  return $httpcode !== 404;
+}
+
 // Accept JSON bodies
 $app->before(function (Request $request) {
     if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
@@ -80,11 +95,12 @@ $app->post('/api/geolocate', function(Request $request) use($app) {
   $currency_code = $geo_result['results'][0]['annotations']['currency']['iso_code'];
   $iso_code = $geo_result['results'][0]['components']['ISO_3166-1_alpha-3'];
   $country_code = $geo_result['results'][0]['components']['country_code'];
+  $country_name = $geo_result['results'][0]['components']['country'];
 
   $result->currency_code = $currency_code;
   $result->country_code = $country_code;
+  $result->country = $country_name;
 
-  $result->country = $geo_result['results'][0]['components']['country'];
   $result->currency = $geo_result['results'][0]['annotations']['currency']['name'];
   $result->currency_iso_code = $geo_result['results'][0]['annotations']['currency']['iso_code'];
   $result->drive_on = $geo_result['results'][0]['annotations']['roadinfo']['drive_on'];
@@ -140,16 +156,22 @@ $app->post('/api/geolocate', function(Request $request) use($app) {
     $weather_lat = $capital_lat;
   }
    
-  $weather_url = "api.openweathermap.org/data/2.5/weather?lat=" . $weather_lat . "&lon=" . $weather_long . "&appid=8521f4625e53b1542f06039f7280aad8";
+  $weather_url = "api.openweathermap.org/data/2.5/onecall?lat=" . $weather_lat . "&lon=" . $weather_long . "&appid=8521f4625e53b1542f06039f7280aad8";
   $weatherOutput = call_json_api($weather_url);
   
-  $result -> weather = $weatherOutput -> weather[0] -> description;
+  $result -> weather = $weatherOutput -> current -> weather[0] -> description;
+  $result -> daily_forecast = $weatherOutput -> daily;
   
   // exchange rate:
   $exhange_url = "https://openexchangerates.org/api/latest.json?app_id=09b3280f2c25483e9bc678feae537506";
   $currencyOutput = call_json_api($exhange_url);
 
   $result -> exchange_rate = $currencyOutput -> rates -> $currency_code;
+
+  // Wiki links
+  $wiki_url = 'https://en.wikipedia.org/wiki/' . str_replace(' ', '_', $country_name);
+  $wiki_exists = check_wiki_page_exists($wiki_url);
+  $result -> wiki_link = $wiki_exists ? $wiki_url : null;
 
   // borders:
   $countryBordersJson = file_get_contents("../country-borders/" . $iso_code  . ".json");

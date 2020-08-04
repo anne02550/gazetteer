@@ -33,8 +33,8 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 
 var pinIcon = L.icon({
     iconUrl: 'img/pin.png',
-    iconSize:     [95, 95], // size of the icon
-    iconAnchor:   [47, 95], // point of the icon which will correspond to marker's location
+    iconSize:     [60, 60], // size of the icon
+    iconAnchor:   [30, 60], // point of the icon which will correspond to marker's location
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
@@ -70,6 +70,24 @@ var onApiSuccess = (result, countryView, showCircle) => {
 	$("#subregion").text(result.subregion );
 	var languages = result.languages.map(l => l.name).join(", ");
 	$("#languages").text(languages);
+
+	var wikiDisplay = $("#wiki");
+	if(result.wiki_link) {
+		wikiDisplay.attr("href", result.wiki_link);
+		wikiDisplay.show();
+	}
+	else {
+		wikiDisplay.hide();
+	}
+
+	var forecast = result.daily_forecast;
+	$("#forecast").text(JSON.stringify(forecast.map(f => {
+		var date = new Date(f.dt * 1000);
+		return {
+			description: f.weather[0].description,
+			date: `${date.getDay()} ${date.getMonth()} ${date.getYear()}`
+		};
+	})));
 
 	// MAP:
 	while(mapItems.length) {

@@ -22,7 +22,7 @@
     <div class="container">{# container div  #}
 
       {# nav bar #}
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
         <a class="navbar-brand" href="#">GAZETTEER</a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
           <form class="form-inline my-2 my-lg-0" >
@@ -36,10 +36,11 @@
       </nav>
 
     {# side bar :  #}
-      <div class="wrapper">
-        <nav id="sidebar" class="sidebar">
-          <button id='close' type="button" class="close" aria-label="Close" onclick="closeSideBar()">
-            <span aria-hidden="true"> &times; </span>
+      <div class="row" id="body-row">
+        <divid="sidebar-container" class="sidebar-expanded d-none d-md-block col-2">
+          <div id="sidebar" class="sidebar">
+            <button id='close' type="button" class="close" aria-label="Close" onclick="closeSideBar()">
+              <span aria-hidden="true"> &times; </span>
             </button> 
           <img id="flag" />  
           <h3 id="country"></h3>
@@ -47,9 +48,11 @@
             <p>Language(s): <span id="languages"></span> </p>
             <p>Continent: <span id="continent"></span> </p>
             <p>Subregion: <span id="subregion"></span> </p>
+            <p>Wikipedia: <a id="wiki">click here</a></p>
             <h4>Capital: </h4>
               <p>Name: <span id="capital"></span> </p>
               <p>Weather:  <span id="weather"></span> </p>
+              <p>Forecast:  <span id="forecast"></span> </p>
               <p>Longitude: <span id="longitude"></span> </p>
               <p>Latitude: <span id="latitude"></span> </p> 
             <h4>Currency: </h4>
@@ -60,13 +63,9 @@
             <h4>Driving:</h4>
               <p>Drive on: <span id="drive-on"></span> </p>
               <p>Speed in: <span id="speed-in"></span> </p>
-           
-            {# new: #}
-           
-          
-            
-        </nav>  
-      </div>
+          </div>        {# side bar #}
+        </div>   {# sidebar container #}
+      </div>  {# side bar row}
 
     </div> {# container /div  #}
 
