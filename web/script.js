@@ -54,8 +54,14 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 }).addTo(map);
 
 // PIN icon:
-var pinIcon = L.icon({
-    iconUrl: 'img/pin.png',
+var pinIconGreen = L.icon({
+    iconUrl: 'img/green_pin.png',
+    iconSize:     [60, 60], // size of the icon
+    iconAnchor:   [30, 60], // point of the icon which will correspond to marker's location
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+var pinIconBlue = L.icon({
+    iconUrl: 'img/blue_pin.png',
     iconSize:     [60, 60], // size of the icon
     iconAnchor:   [30, 60], // point of the icon which will correspond to marker's location
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
@@ -124,7 +130,7 @@ var onApiSuccess = (result, countryView, showCircle) => {
 
 	
 	if(countryView) {
-		var marker = L.marker([result.capital_lat, result.capital_long], {icon: pinIcon});
+		var marker = L.marker([result.capital_lat, result.capital_long], {icon: pinIconBlue});
 		marker.addTo(map)
 		.bindPopup("<b>Hey there! This is the Capital.</b>")
 		.openPopup();
@@ -138,7 +144,7 @@ var onApiSuccess = (result, countryView, showCircle) => {
 		map.fitBounds(polygon.getBounds());
 	}
 	else{
-		var marker = L.marker([result.lat, result.long], {icon: pinIcon});
+		var marker = L.marker([result.lat, result.long], {icon: pinIconGreen});
 		marker.addTo(map)
 		.bindPopup("<b>You are here!</b>")
 		.openPopup();

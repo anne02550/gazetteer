@@ -22,21 +22,18 @@
   {# preloader #}
     <div class="sk-cube-wrapper">
       <div class="sk-cube-grid">
-       <div class="sk-cube sk-cube1"></div>
-       <div class="sk-cube sk-cube2"></div>
-       <div class="sk-cube sk-cube3"></div>
-       <div class="sk-cube sk-cube4"></div>
-       <div class="sk-cube sk-cube5"></div>
-       <div class="sk-cube sk-cube6"></div>
-       <div class="sk-cube sk-cube7"></div>
-       <div class="sk-cube sk-cube8"></div>
-       <div class="sk-cube sk-cube9"></div>
+        <div class="sk-cube sk-cube1"></div>
+        <div class="sk-cube sk-cube2"></div>
+        <div class="sk-cube sk-cube3"></div>
+        <div class="sk-cube sk-cube4"></div>
+        <div class="sk-cube sk-cube5"></div>
+        <div class="sk-cube sk-cube6"></div>
+        <div class="sk-cube sk-cube7"></div>
+        <div class="sk-cube sk-cube8"></div>
+        <div class="sk-cube sk-cube9"></div>
+      </div>  
     </div>
-     
-    </div>
-
-
-
+{# container div #}
     <div class = "container">
       {# nav bar #}
       <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -44,7 +41,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
           <form class="form-inline my-2 my-lg-0" >
             <select id="address" class="form-control mr-sm-2" id="find-address" aria-label="Search">
-              <option value="" disabled selected>Select a country</option>
+              <option value="" disabled selected>Please select a country</option>
                 {% for country in countries %}
               <option value="{{country|e}}">{{country|e}}</option>
                 {% endfor %} #}
@@ -52,11 +49,11 @@
           </form>
       </nav>
     {# side bar :  #}   
-        <div id="sidebar-container" class="sidebar-expanded d-none d-md-block col-2">
-          <div id="sidebar" class="sidebar">
-            <button id='close' type="button" class="close" aria-label="Close" onclick="closeSideBar()">
-              <span aria-hidden="true"> &times; </span>
-            </button> 
+      <div id="sidebar-container" class="sidebar-expanded d-none d-md-block col-2">
+        <div id="sidebar" class="sidebar">
+          <button id='close' type="button" class="close" aria-label="Close" onclick="closeSideBar()">
+            <span aria-hidden="true"> &times; </span>
+          </button> 
           <img id="flag"/>  
           <h3 id="country"></h3>
             <p>Population: <span id="population"></span> </p>
@@ -112,9 +109,9 @@
           </div>       
         </div>  
   {# container div end #}
-  </div> 
+  </div>
+   
     {# map :  #}
-
     <div id="map"></div>
 
 
