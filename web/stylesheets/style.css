@@ -1,4 +1,77 @@
+/* pre-loader */
+.sk-cube-grid {
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  top: 48%;
+  left: 48%;
+}
 
+.sk-cube-grid .sk-cube {
+  width: 33%;
+  height: 33%;
+  background-color: #066917;
+  float: left;
+  -webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
+          animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out; 
+}
+.sk-cube-grid .sk-cube1 {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s; }
+.sk-cube-grid .sk-cube2 {
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s; }
+.sk-cube-grid .sk-cube3 {
+  -webkit-animation-delay: 0.4s;
+          animation-delay: 0.4s; }
+.sk-cube-grid .sk-cube4 {
+  -webkit-animation-delay: 0.1s;
+          animation-delay: 0.1s; }
+.sk-cube-grid .sk-cube5 {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s; }
+.sk-cube-grid .sk-cube6 {
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s; }
+.sk-cube-grid .sk-cube7 {
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s; }
+.sk-cube-grid .sk-cube8 {
+  -webkit-animation-delay: 0.1s;
+          animation-delay: 0.1s; }
+.sk-cube-grid .sk-cube9 {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s; }
+
+@-webkit-keyframes sk-cubeGridScaleDelay {
+  0%, 70%, 100% {
+    -webkit-transform: scale3D(1, 1, 1);
+            transform: scale3D(1, 1, 1);
+  } 35% {
+    -webkit-transform: scale3D(0, 0, 1);
+            transform: scale3D(0, 0, 1); 
+  }
+}
+
+@keyframes sk-cubeGridScaleDelay {
+  0%, 70%, 100% {
+    -webkit-transform: scale3D(1, 1, 1);
+            transform: scale3D(1, 1, 1);
+  } 35% {
+    -webkit-transform: scale3D(0, 0, 1);
+            transform: scale3D(0, 0, 1);
+  } 
+}
+.sk-cube-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #a4a5a536;
+  z-index: 999999;
+  }
+/* pre-loader end */
 html, body {
     height: 100%;
 }
@@ -6,26 +79,29 @@ html, body {
 #map {
   height: 100vh;
   width: 100vw;
-
 }
-
-#map-holder {
-    height: 90%;
-}
-
-#sidebar { 
-  background-color: white;
-  z-index: 1000;
-} 
 
 h3 {
   text-transform: uppercase;
 }
 
 p {
-
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 15px;
+}
+
+#wiki {
+  color: #066917;
+  text-decoration: none;
+  background-color: rgb(219, 219, 219);
+  font-size: 16px;
+}
+
+#wiki:hover{
+  color:white;
+  text-decoration: underline;
+  background-color:#027a16;
+  font-size: 18px;
 }
 
 #flag {
@@ -38,6 +114,7 @@ p {
     max-width:60em;
     padding: 0.2em;
 } 
+
 #footer {
     height: 50px;
     position: fixed;
@@ -45,6 +122,7 @@ p {
     right: 0;
     width: 100%;
 }
+
 @media screen and (max-height: 450px) {
   .sidebar {padding-top: 15px;}
   .sidebar p  {font-size: 18px;}

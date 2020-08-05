@@ -1,11 +1,31 @@
 
+
 var url = "api/geolocate";
 
-var mapItems = [];
+var preloaderFadeOutTime = 500;
+function showPreloader() {
+	var preloader = $('.sk-cube-wrapper');
+	preloader.fadeIn(preloaderFadeOutTime);
+}
+
+function hidePreloader() {
+	var preloader = $('.sk-cube-wrapper');
+	preloader.fadeOut(preloaderFadeOutTime);
+}
+
 var map = L.map('map').fitWorld();
 L.control.zoom({
 	position: 'bottomright'
 }).addTo(map);
+
+var mapItems = [];
+
+function clearMapItems() {
+	while(mapItems.length) {
+		var item = mapItems.pop();
+		map.removeLayer(item);
+	};
+}
 
 // ERROR handling:
 function onLocationFound(e) {
@@ -49,6 +69,9 @@ map.addControl(sidebar);
 
 // ALL side bar information display :
 var onApiSuccess = (result, countryView, showCircle) => {
+	// stop loader here
+	hidePreloader();
+
 	if(result.error) {
 		alert(result.error);
 		return;
@@ -96,11 +119,6 @@ var onApiSuccess = (result, countryView, showCircle) => {
 	})));
 
 	// MAP - outline country - circle location - logic:
-	while(mapItems.length) {
-		var item = mapItems.pop();
-		map.removeLayer(item);
-	};
-
 	map.setView([result.lat, result.long], 13);
 
 
@@ -134,6 +152,8 @@ function closeSideBar() {
 
 
 function getLocationInfo(data, countryView, showCircle) {
+	showPreloader();
+	clearMapItems();
 	$.ajax({
 		url, 
 		success: (result) => onApiSuccess(result, countryView, showCircle),
