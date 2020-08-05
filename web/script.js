@@ -27,6 +27,7 @@ function clearMapItems() {
 	};
 }
 
+
 // ERROR handling:
 function onLocationFound(e) {
 	var radius = e.accuracy / 2;
@@ -121,14 +122,14 @@ var onApiSuccess = (result, countryView, showCircle) => {
 	// MAP - outline country - circle location - logic:
 	map.setView([result.lat, result.long], 13);
 
-
+	
 	if(countryView) {
 		var marker = L.marker([result.capital_lat, result.capital_long], {icon: pinIcon});
 		marker.addTo(map);
 		mapItems.push(marker);
 
 		sidebar.show();
-		var polygon = L.polygon(result.borders, {color: 'green'});
+		var polygon = L.polygon(result.borders, {color: 'green', weight: 10, opacity: .7, dashArray: '20,15', lineJoin: 'round'}); 
 		polygon.addTo(map);
 		mapItems.push(polygon);
 	
