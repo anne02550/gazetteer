@@ -56,14 +56,14 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 // PIN icon:
 var pinIconGreen = L.icon({
     iconUrl: 'img/green_pin.png',
-    iconSize:     [60, 60], // size of the icon
-    iconAnchor:   [30, 60], // point of the icon which will correspond to marker's location
+    iconSize:     [42, 50], // size of the icon
+    iconAnchor:   [21, 50], // point of the icon which will correspond to marker's location
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 var pinIconBlue = L.icon({
     iconUrl: 'img/blue_pin.png',
-    iconSize:     [60, 60], // size of the icon
-    iconAnchor:   [30, 60], // point of the icon which will correspond to marker's location
+    iconSize:     [42, 50], // size of the icon
+    iconAnchor:   [21, 50], // point of the icon which will correspond to marker's location
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
@@ -104,7 +104,7 @@ var onApiSuccess = (result, countryView, showCircle) => {
 	var languages = result.languages.map(l => l.name).join(", ");
 	$("#languages").text(languages);
 
-//  wikipedia display
+    // wikipedia display
 	var wikiDisplay = $("#wiki");
 	if(result.wiki_link) {
 		wikiDisplay.attr("href", result.wiki_link);
@@ -113,7 +113,6 @@ var onApiSuccess = (result, countryView, showCircle) => {
 	else {
 		wikiDisplay.hide();
 	}
-
 
 	// Weather forecast display:
 	var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
