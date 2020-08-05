@@ -116,14 +116,32 @@ var onApiSuccess = (result, countryView, showCircle) => {
 
 
 	// Weather forecast display:
-	var forecast = result.daily_forecast;
-	$("#forecast").text(JSON.stringify(forecast.map(f => {
-		var date = new Date(f.dt * 1000);
-		return {
-			description: f.weather[0].description,
-			date: `${date.getDay()} ${date.getMonth()} ${date.getYear()}`
-		};
-	})));
+	var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+	var toCelsius = (kelvin) => Math.floor(kelvin - 273.15);
+
+	var setForecast = (forecasts, index) => {
+		var forecast = forecasts[index];
+		var date = new Date(forecast.dt * 1000);
+		var dayOfWeek = days[date.getDay()];
+		var icon = forecast.weather[0].icon;
+		var desc = forecast.weather[0].description;
+		var src = `external/weather/${icon}.svg`;
+
+		var maxTemp = forecast.temp.max;
+		var minTemp = forecast.temp.min;
+		var temperature = `${toCelsius(minTemp)}°C - ${toCelsius(maxTemp)}°C`
+		
+		$(`#forecast-header-${index}`).text(dayOfWeek);
+		$(`#forecast-img-${index}`).attr('src', src);
+		$(`#forecast-description-${index}`).text(desc);
+		$(`#forecast-temp-${index}`).text(temperature);
+	};
+
+	setForecast(result.daily_forecast, 0);
+	setForecast(result.daily_forecast, 1);
+	setForecast(result.daily_forecast, 2);
+	setForecast(result.daily_forecast, 3);
+
 
 	// MAP - outline country - circle location - logic:
 	map.setView([result.lat, result.long], 13);
