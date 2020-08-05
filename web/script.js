@@ -125,11 +125,13 @@ var onApiSuccess = (result, countryView, showCircle) => {
 	
 	if(countryView) {
 		var marker = L.marker([result.capital_lat, result.capital_long], {icon: pinIcon});
-		marker.addTo(map);
+		marker.addTo(map)
+		.bindPopup("<b>Hey there! This is the Capital.</b>")
+		.openPopup();
 		mapItems.push(marker);
 
 		sidebar.show();
-		var polygon = L.polygon(result.borders, {color: 'green', weight: 10, opacity: .7, dashArray: '20,15', lineJoin: 'round'}); 
+		var polygon = L.polygon(result.borders, {color: 'green', weight: 4, opacity: .7, dashArray: '10,10', lineJoin: 'round'}); 
 		polygon.addTo(map);
 		mapItems.push(polygon);
 	
@@ -137,7 +139,9 @@ var onApiSuccess = (result, countryView, showCircle) => {
 	}
 	else{
 		var marker = L.marker([result.lat, result.long], {icon: pinIcon});
-		marker.addTo(map);
+		marker.addTo(map)
+		.bindPopup("<b>You are here!</b>")
+		.openPopup();
 		mapItems.push(marker);
 	}
 

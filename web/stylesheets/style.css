@@ -1,7 +1,7 @@
 /* pre-loader */
 .sk-cube-grid {
-  width: 70px;
-  height: 70px;
+  width: 100px;
+  height: 100px;
   position: absolute;
   top: 48%;
   left: 48%;
@@ -10,7 +10,7 @@
 .sk-cube-grid .sk-cube {
   width: 33%;
   height: 33%;
-  background-color: #04521b;
+  background-color: #454746;
   float: left;
   -webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
           animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out; 
