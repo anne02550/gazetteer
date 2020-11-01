@@ -22,6 +22,7 @@ function call_json_api($url) {
   return json_decode($output);
 }
 
+// check if wiki link exist:
 function check_wiki_page_exists($url) {
   $curl = curl_init();
   $options = [
@@ -170,7 +171,7 @@ $app->post('/api/geolocate', function(Request $request) use($app) {
 
   $result -> exchange_rate = $currencyOutput -> rates -> $currency_code;
 
-  // Wiki links
+  // Wiki links, build wiki url
   $wiki_url = 'https://en.wikipedia.org/wiki/' . str_replace(' ', '_', $country_name);
   $wiki_exists = check_wiki_page_exists($wiki_url);
   $result -> wiki_link = $wiki_exists ? $wiki_url : null;
